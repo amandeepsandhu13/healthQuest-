@@ -84,7 +84,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder=""
+                                    placeholder="Your age"
                                     name="age"
                                     type="text"
                                     value={formState.age}
@@ -92,7 +92,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder=""
+                                    placeholder="Your height"
                                     name="height"
                                     type="text"
                                     value={formState.password}
@@ -100,7 +100,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder=""
+                                    placeholder="Your weight"
                                     name="weight"
                                     type="text"
                                     value={formState.weight}
@@ -108,7 +108,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder=""
+                                    placeholder="Your gender"
                                     name="gender"
                                     type="text"
                                     value={formState.gender}
@@ -116,7 +116,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder=""
+                                    placeholder="Your goal"
                                     name="goal"
                                     type="text"
                                     value={formState.goal}
