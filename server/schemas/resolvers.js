@@ -74,7 +74,6 @@ const resolvers = {
         );
       }
       throw new AuthenticationError('Not authenticated');
-    },
   },
     addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {
