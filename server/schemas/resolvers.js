@@ -9,6 +9,13 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
     },
+    getActivityLogs: async (parent, { userId }, context) => {
+      if (context.user) {
+        return ActivityLog.find({ userId });
+      }
+      throw new AuthenticationError('Not authenticated');
+    },
+
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Thought.find(params).sort({ createdAt: -1 });
@@ -47,6 +54,28 @@ const resolvers = {
 
       return { token, user };
     },
+    addActivityLog: async (parent, { userId, activityType, duration }, context) => {
+      if (context.user) {
+        const newLog = new ActivityLog({
+          userId,
+          activityType,
+          duration,
+        });
+        return newLog.save();
+      }
+      throw new AuthenticationError('Not authenticated');
+    },
+    updateActivityLog: async (parent, { _id, activityType, duration }, context) => {
+      if (context.user) {
+        return ActivityLog.findByIdAndUpdate(
+          _id,
+          { activityType, duration },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError('Not authenticated');
+    },
+  },
     addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {
         const thought = await Thought.create({
