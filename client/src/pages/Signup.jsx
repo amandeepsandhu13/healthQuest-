@@ -84,26 +84,42 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="******"
-                                    name="password"
-                                    type="password"
+                                    placeholder=""
+                                    name="age"
+                                    type="text"
+                                    value={formState.age}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder=""
+                                    name="height"
+                                    type="text"
                                     value={formState.password}
                                     onChange={handleChange}
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="******"
-                                    name="password"
-                                    type="password"
-                                    value={formState.password}
+                                    placeholder=""
+                                    name="weight"
+                                    type="text"
+                                    value={formState.weight}
                                     onChange={handleChange}
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="******"
-                                    name="password"
-                                    type="password"
-                                    value={formState.password}
+                                    placeholder=""
+                                    name="gender"
+                                    type="text"
+                                    value={formState.gender}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder=""
+                                    name="goal"
+                                    type="text"
+                                    value={formState.goal}
                                     onChange={handleChange}
                                 />
                                 <button
