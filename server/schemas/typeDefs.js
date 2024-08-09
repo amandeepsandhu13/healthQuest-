@@ -4,6 +4,11 @@ const typeDefs = `
     username: String
     email: String
     password: String
+    gender: String 
+    age: Int 
+    height: Float 
+    weight:Float 
+    goal:String 
     thoughts: [Thought]!
 
   }
@@ -39,7 +44,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!, gender:String!, age: Int!, height: Float!, weight: Float!, goal: String!): Auth
     login(email: String!, password: String!): Auth
     addThought(thoughtText: String!): Thought
     addComment(thoughtId: ID!, commentText: String!): Thought
