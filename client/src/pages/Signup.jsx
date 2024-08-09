@@ -12,6 +12,10 @@ const Signup = () => {
         email: "",
         password: "",
         gender: "",
+        age: "",
+        height: "",
+        weight: "",
+        goal: "",
     });
     const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -28,9 +32,17 @@ const Signup = () => {
         event.preventDefault();
         console.log(formState);
 
+        // Convert strings to the appropriate numeric types
+        const submissionData = {
+            ...formState,
+            age: parseInt(formState.age, 10), // Convert age to an integer
+            height: parseFloat(formState.height), // Convert height to a float
+            weight: parseFloat(formState.weight), // Convert weight to a float
+        };
+
         try {
             const { data } = await addUser({
-                variables: { ...formState },
+                variables: { ...submissionData },
             });
 
             Auth.login(data.addUser.token);
@@ -82,8 +94,40 @@ const Signup = () => {
                                     className="form-input"
                                     placeholder="Your gender"
                                     name="gender"
-                                    type="gender"
+                                    type="text"
                                     value={formState.gender}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder="Your age in years"
+                                    name="age"
+                                    type="text"
+                                    value={formState.age}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder="Your height in cms"
+                                    name="height"
+                                    type="text"
+                                    value={formState.height}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder="Your weight in kgs"
+                                    name="weight"
+                                    type="text"
+                                    value={formState.weight}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    className="form-input"
+                                    placeholder="Your goal"
+                                    name="goal"
+                                    type="text"
+                                    value={formState.goal}
                                     onChange={handleChange}
                                 />
                                 <button
