@@ -8,13 +8,9 @@ import Auth from "../utils/auth";
 
 const Signup = () => {
     const [formState, setFormState] = useState({
-        name: "",
+        username: "",
         email: "",
         password: "",
-        age: "",
-        height: "",
-        weight: "",
-        goal: "",
         gender: "",
     });
     const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -60,8 +56,8 @@ const Signup = () => {
                             <form onSubmit={handleFormSubmit}>
                                 <input
                                     className="form-input"
-                                    placeholder="Your name"
-                                    name="name"
+                                    placeholder="Your username"
+                                    name="username"
                                     type="text"
                                     value={formState.name}
                                     onChange={handleChange}
@@ -76,7 +72,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="Your password"
+                                    placeholder="******"
                                     name="password"
                                     type="password"
                                     value={formState.password}
@@ -84,34 +80,10 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="Height"
-                                    name="height"
-                                    type="text"
-                                    value={formState.password}
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    className="form-input"
-                                    placeholder="Age"
-                                    name="age"
-                                    type="text"
-                                    value={formState.password}
-                                    onChange={handleChange}
-                                />
-                                <input
-                                    className="form-input"
-                                    placeholder="Weight"
-                                    name="weight"
-                                    type="text"
-                                    value={formState.password}
-                                    onChange={handleChange}
-                                />
-                                 <input
-                                    className="form-input"
-                                    placeholder="Goal"
-                                    name="goal"
-                                    type="text"
-                                    value={formState.password}
+                                    placeholder="Your gender"
+                                    name="gender"
+                                    type="gender"
+                                    value={formState.gender}
                                     onChange={handleChange}
                                 />
                                 <button
