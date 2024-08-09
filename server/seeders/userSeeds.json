@@ -1,52 +1,102 @@
 [
-  {
-    "username": "Brian Kernighan",
-    "email": "bkernighan@techfriends.dev",
-    "password": "password01"
-  },
-  {
-    "username": "Max Kanat-Alexander",
-    "email": "mkanatalexander@techfriends.dev",
-    "password": "password02"
-  },
-  {
-    "username": "Why The Lucky Stiff",
-    "email": "wtls@techfriends.dev",
-    "password": "password03"
-  },
-  {
-    "username": "Kent Beck",
-    "email": "kbeck@techfriends.dev",
-    "password": "password04"
-  },
-  {
-    "username": "Edward V. Berard",
-    "email": "evberard@techfriends.dev",
-    "password": "password05"
-  },
-  {
-    "username": "Alan Kay",
-    "email": "akay@techfriends.dev",
-    "password": "password06"
-  },
-  {
-    "username": "C.A.R. Hoare",
-    "email": "choare@techfriends.dev",
-    "password": "password07"
-  },
-  {
-    "username": "David Thomas",
-    "email": "dthomas@techfriends.dev",
-    "password": "password08"
-  },
-  {
-    "username": "Donald Knuth",
-    "email": "dknuth@techfriends.dev",
-    "password": "password09"
-  },
-  {
-    "username": "Lernantino",
-    "email": "lernantino@techfriends.dev",
-    "password": "password10"
-  }
+    {
+        "username": "Brian Kernighan",
+        "email": "bkernighan@techfriends.dev",
+        "password": "password01",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Max Kanat-Alexander",
+        "email": "mkanatalexander@techfriends.dev",
+        "password": "password02",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Why The Lucky Stiff",
+        "email": "wtls@techfriends.dev",
+        "password": "password03",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Kent Beck",
+        "email": "kbeck@techfriends.dev",
+        "password": "password04",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Edward V. Berard",
+        "email": "evberard@techfriends.dev",
+        "password": "password05",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Alan Kay",
+        "email": "akay@techfriends.dev",
+        "password": "password06",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "C.A.R. Hoare",
+        "email": "choare@techfriends.dev",
+        "password": "password07",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "David Thomas",
+        "email": "dthomas@techfriends.dev",
+        "password": "password08",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Donald Knuth",
+        "email": "dknuth@techfriends.dev",
+        "password": "password09",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    },
+    {
+        "username": "Lernantino",
+        "email": "lernantino@techfriends.dev",
+        "password": "password10",
+        "gender": "male",
+        "age": 22,
+        "height": 124,
+        "weight": 78,
+        "goal": "transform myself"
+    }
 ]
