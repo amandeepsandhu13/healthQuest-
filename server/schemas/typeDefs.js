@@ -10,10 +10,23 @@ const typeDefs = `
     weight:Float 
     goal:String 
     thoughts: [Thought]!
+    exerciseLogs: [ExerciseLog]
+
 
   }
 
+  type ExerciseCategory {
+    _id: ID!
+    name: String!
+  }
 
+    type ExerciseLog {
+    _id: ID!
+    user: User!
+    category: ExerciseCategory!
+    duration: Int!
+    date: String!
+  }
 
   type Thought {
     _id: ID
@@ -38,6 +51,9 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
+    exerciseCategories: [ExerciseCategory]
+    exerciseLogs(userId: ID!): [ExerciseLog]
+    
     thoughts(username: String): [Thought]
     thought(thoughtId: ID!): Thought
     me: User
@@ -46,6 +62,10 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, email: String!, password: String!, gender:String!, age: Int!, height: Float!, weight: Float!, goal: String!): Auth
     login(email: String!, password: String!): Auth
+
+    addExerciseCategory(name: String!): ExerciseCategory
+    addExerciseLog(categoryId: ID!, duration: Int!): ExerciseLog
+
     addThought(thoughtText: String!): Thought
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
