@@ -8,23 +8,7 @@ const typeDefs = `
 
   }
 
-  type ExerciseCategory {
-    id: ID!
-    name: String!
-  }
 
-  type ExerciseLog {
-    id: ID!
-    user: User!
-    category: ExerciseCategory!
-    duration: Int!
-    date: String!
-  }
-
-  type Query {
-    exerciseCategories: [ExerciseCategory]
-    exerciseLogs(userId: ID!): [ExerciseLog]
-  }
 
   type Thought {
     _id: ID
@@ -62,10 +46,6 @@ const typeDefs = `
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
 
-     addExerciseCategory(name: String!): ExerciseCategory
-    addExerciseLog(userId: ID!, categoryId: ID!, duration: Int!): ExerciseLog
-    updateExerciseLog(id: ID!, duration: Int!): ExerciseLog
- 
   }
 `;
 

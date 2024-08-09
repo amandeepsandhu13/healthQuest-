@@ -1,4 +1,4 @@
-const { User, Thought, ActivityLog } = require('../models');
+const { User, Thought } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -10,13 +10,6 @@ const resolvers = {
       return User.findOne({ username }).populate('thoughts');
     },
 
-    exerciseCategories: async () => {
-      return await ExerciseCategory.find();
-    },
-    exerciseLogs: async (_, { userId }, context) => {
-      if (!context.user) throw AuthenticationError;
-      return await ExerciseLog.find({ user: userId }).populate('category');
-    },
 
     thoughts: async (parent, { username }) => {
       const params = username ? { username } : {};
@@ -57,24 +50,7 @@ const resolvers = {
       return { token, user };
     },
 
-    addExerciseCategory: async (_, { name }, context) => {
-      if (!context.user) throw AuthenticationError;
-      const category = new ExerciseCategory({ name });
-      await category.save();
-      return category;
-    },
-    addExerciseLog: async (_, { categoryId, duration }, context) => {
-      if (!context.user) throw AuthenticationError;
-      const log = new ExerciseLog({
-        user: context.user._id,
-        category: categoryId,
-        duration,
-      });
-      await log.save();
-      return log.populate('category');
-    },
-
-    addThought: async (parent, { thoughtText }, context) => {
+      addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {
         const thought = await Thought.create({
           thoughtText,

@@ -1,6 +1,6 @@
 const User = require('./User');
 const Thought = require('./Thought');
-const ExerciseCategory = require('/ExerciseCategory');
+const ExerciseCategory = require('./ExerciseCategory');
 const ExerciseLog = require('./ExerciseLog');
 
 
