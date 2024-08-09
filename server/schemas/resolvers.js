@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User, Thought, ActivityLog } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -9,11 +9,13 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
     },
-    getActivityLogs: async (parent, { userId }, context) => {
-      if (context.user) {
-        return ActivityLog.find({ userId });
-      }
-      throw new AuthenticationError('Not authenticated');
+
+    exerciseCategories: async () => {
+      return await ExerciseCategory.find();
+    },
+    exerciseLogs: async (_, { userId }, context) => {
+      if (!context.user) throw AuthenticationError;
+      return await ExerciseLog.find({ user: userId }).populate('category');
     },
 
     thoughts: async (parent, { username }) => {
@@ -54,27 +56,24 @@ const resolvers = {
 
       return { token, user };
     },
-    addActivityLog: async (parent, { userId, activityType, duration }, context) => {
-      if (context.user) {
-        const newLog = new ActivityLog({
-          userId,
-          activityType,
-          duration,
-        });
-        return newLog.save();
-      }
-      throw new AuthenticationError('Not authenticated');
+
+    addExerciseCategory: async (_, { name }, context) => {
+      if (!context.user) throw AuthenticationError;
+      const category = new ExerciseCategory({ name });
+      await category.save();
+      return category;
     },
-    updateActivityLog: async (parent, { _id, activityType, duration }, context) => {
-      if (context.user) {
-        return ActivityLog.findByIdAndUpdate(
-          _id,
-          { activityType, duration },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('Not authenticated');
-  },
+    addExerciseLog: async (_, { categoryId, duration }, context) => {
+      if (!context.user) throw AuthenticationError;
+      const log = new ExerciseLog({
+        user: context.user._id,
+        category: categoryId,
+        duration,
+      });
+      await log.save();
+      return log.populate('category');
+    },
+
     addThought: async (parent, { thoughtText }, context) => {
       if (context.user) {
         const thought = await Thought.create({
