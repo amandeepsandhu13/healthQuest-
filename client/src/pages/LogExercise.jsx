@@ -4,7 +4,7 @@ import { ADD_EXERCISE_LOG } from '../utils/mutations'; // Ensure this mutation i
 import Auth from '../utils/auth';
 
 const LogExercise = () => {
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('yoga');
   const [categorySpecificData, setCategorySpecificData] = useState({});
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
@@ -40,9 +40,7 @@ const LogExercise = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Category11:', category);
-    console.log('Category Specific Data:', categorySpecificData);
-    try {
+     try {
       await addExerciseLog({
         variables: {
           category,
@@ -52,8 +50,7 @@ const LogExercise = () => {
           duration: parseInt(duration, 10),
           date
         }  
-      });  console.log('Category:', category);
-      console.log('Category Specific Data:', categorySpecificData);
+      });  
       
       // Clear form
       setCategory('yoga');
@@ -91,6 +88,7 @@ const LogExercise = () => {
             <input type="text" id="instructor" name="instructor" onChange={handleInputChange} />
             <label htmlFor="level">Level:</label>
             <select id="level" name="level" onChange={handleInputChange}>
+              <option >select option</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
