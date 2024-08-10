@@ -61,7 +61,7 @@ const LogExercise = () => {
       setCategory('yoga');
       setCategorySpecificData({});
       setDuration('');
-      setDate('');
+     // setDate('');
       // Set success message
       toast.current.show({ severity: 'success', summary: 'Success', detail: 'Activity added successfully!' });
       setError(null);
@@ -161,11 +161,6 @@ const LogExercise = () => {
         <div className="p-field">
           <label htmlFor="duration">Duration (minutes):</label>
           <InputNumber id="duration" value={duration} onValueChange={(e) => setDuration(e.value)} />
-        </div>
-
-        <div className="p-field">
-          <label htmlFor="date">Date:</label>
-          <InputText id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
 
         <Button type="submit" label="Add Exercise Log" icon="pi pi-plus" className="p-mt-3 p-button-primary" />
