@@ -1,35 +1,40 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_EXERCISE_LOG } from '../utils/mutations'; // Ensure this mutation is correctly defined in `mutations.js`
+import { ADD_EXERCISE_LOG } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { Navigate, useParams } from "react-router-dom";
-
+import { Navigate } from 'react-router-dom';
+import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
+import { InputNumber } from 'primereact/inputnumber';
+import { Toast } from 'primereact/toast';
+import { Button } from 'primereact/button';
 
 const LogExercise = () => {
   const [category, setCategory] = useState('yoga');
   const [categorySpecificData, setCategorySpecificData] = useState({});
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState(null);
 
-  const [addExerciseLog, { error }] = useMutation(ADD_EXERCISE_LOG);
+  const [addExerciseLog] = useMutation(ADD_EXERCISE_LOG);
+  const toast = React.useRef(null);
 
   const handleCategoryChange = (e) => {
-    setCategory(e.target.value);
+    setCategory(e.value);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-     // Convert value to the appropriate type based on the category
-     if (category === 'cardio' && name === 'distance') {
+    if (category === 'cardio' && name === 'distance') {
       setCategorySpecificData((prevData) => ({
         ...prevData,
         cardio: {
           ...prevData.cardio,
-          [name]: parseFloat(value) // Ensure value is a Float
+          [name]: parseFloat(value)
         }
       }));
     } else {
-      // Handle other categories similarly
       setCategorySpecificData((prevData) => ({
         ...prevData,
         [category]: {
@@ -42,109 +47,128 @@ const LogExercise = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     try {
+    try {
       await addExerciseLog({
         variables: {
           category,
-          categorySpecificData: {
-           ...categorySpecificData
-          },
+          categorySpecificData: { ...categorySpecificData },
           duration: parseInt(duration, 10),
           date
-        }  
-      });  
+        }
+      });
 
       // Clear form
       setCategory('yoga');
       setCategorySpecificData({});
       setDuration('');
       setDate('');
-
+      // Set success message
+      toast.current.show({ severity: 'success', summary: 'Success', detail: 'Activity added successfully!' });
+      setError(null);
     } catch (err) {
       console.error(err);
+      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Failed to add activity. Please try again.' });
+      setSuccessMessage('');
     }
   };
-
 
   if (!Auth.loggedIn()) {
     return <Navigate to="/login" />;
   }
 
-
   return (
-    <div>
-      <h2>Log Exercise</h2>
+    <div className="p-fluid">
+      <Toast ref={toast} />
+
+      <h2 className="p-text-center p-mb-4">Log Exercise</h2>
+
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="p-field">
           <label htmlFor="category">Category:</label>
-          <select id="category" value={category} onChange={handleCategoryChange}>
-            <option value="yoga">Yoga</option>
-            <option value="stretching">Stretching</option>
-            <option value="weightlifting">Weightlifting</option>
-            <option value="cardio">Cardio</option>
-          </select>
+          <Dropdown
+            id="category"
+            value={category}
+            options={[
+              { label: 'Yoga', value: 'yoga' },
+              { label: 'Stretching', value: 'stretching' },
+              { label: 'Weightlifting', value: 'weightlifting' },
+              { label: 'Cardio', value: 'cardio' }
+            ]}
+            onChange={handleCategoryChange}
+            placeholder="Select a category"
+          />
         </div>
 
         {category === 'yoga' && (
-          <div>
+          <div className="p-field">
             <label htmlFor="instructor">Instructor:</label>
-            <input type="text" id="instructor" name="instructor" onChange={handleInputChange} />
+            <InputText id="instructor" name="instructor" onChange={handleInputChange} />
             <label htmlFor="level">Level:</label>
-            <select id="level" name="level" onChange={handleInputChange}>
-              <option >select option</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+            <Dropdown
+              id="level"
+              name="level"
+              options={[
+                { label: 'Select option', value: '' },
+                { label: 'Beginner', value: 'Beginner' },
+                { label: 'Intermediate', value: 'Intermediate' },
+                { label: 'Advanced', value: 'Advanced' }
+              ]}
+              onChange={handleInputChange}
+              placeholder="Select a level"
+            />
           </div>
         )}
 
         {category === 'stretching' && (
-          <div>
+          <div className="p-field">
             <label htmlFor="equipment">Equipment:</label>
-            <input type="text" id="equipment" name="equipment" onChange={handleInputChange} />
+            <InputText id="equipment" name="equipment" onChange={handleInputChange} />
             <label htmlFor="focus">Focus:</label>
-            <input type="text" id="focus" name="focus" onChange={handleInputChange} />
+            <InputText id="focus" name="focus" onChange={handleInputChange} />
           </div>
         )}
 
         {category === 'weightlifting' && (
-          <div>
+          <div className="p-field">
             <label htmlFor="sets">Sets:</label>
-            <input type="number" id="sets" name="sets" onChange={handleInputChange} />
+            <InputNumber id="sets" name="sets" onValueChange={(e) => handleInputChange({ target: { name: 'sets', value: e.value } })} />
             <label htmlFor="reps">Reps:</label>
-            <input type="number" id="reps" name="reps" onChange={handleInputChange} />
+            <InputNumber id="reps" name="reps" onValueChange={(e) => handleInputChange({ target: { name: 'reps', value: e.value } })} />
             <label htmlFor="weight">Weight (kg):</label>
-            <input type="number" id="weight" name="weight" onChange={handleInputChange} />
+            <InputNumber id="weight" name="weight" onValueChange={(e) => handleInputChange({ target: { name: 'weight', value: e.value } })} />
           </div>
         )}
 
         {category === 'cardio' && (
-          <div>
+          <div className="p-field">
             <label htmlFor="distance">Distance (km):</label>
-            <input type="number" id="distance" name="distance" onChange={handleInputChange} />
+            <InputNumber id="distance" name="distance" onValueChange={(e) => handleInputChange({ target: { name: 'distance', value: e.value } })} />
             <label htmlFor="intensity">Intensity:</label>
-            <select id="intensity" name="intensity" onChange={handleInputChange}>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
+            <Dropdown
+              id="intensity"
+              name="intensity"
+              options={[
+                { label: 'Low', value: 'Low' },
+                { label: 'Medium', value: 'Medium' },
+                { label: 'High', value: 'High' }
+              ]}
+              onChange={handleInputChange}
+              placeholder="Select an intensity"
+            />
           </div>
         )}
 
-        <div>
+        <div className="p-field">
           <label htmlFor="duration">Duration (minutes):</label>
-          <input type="number" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
+          <InputNumber id="duration" value={duration} onValueChange={(e) => setDuration(e.value)} />
         </div>
 
-        {/* <div>
+        <div className="p-field">
           <label htmlFor="date">Date:</label>
-          <input type="date" id="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        </div> */}
+          <InputText id="date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        </div>
 
-        <button type="submit">Add Exercise Log</button>
-
-        {error && <p>Error: {error.message}</p>}
+        <Button type="submit" label="Add Exercise Log" icon="pi pi-plus" className="p-mt-3 p-button-primary" />
       </form>
     </div>
   );
