@@ -23,11 +23,11 @@ const resolvers = {
         exerciseCategories: async () => {
           return await ExerciseCategory.find();
         },
+
         exerciseLogs: async (_, { userId }, context) => {
           if (!context.user) throw AuthenticationError;
           //return await ExerciseLog.find({ user: userId }).populate('category');
           return await ExerciseLog.find({ userId }).populate('categorySpecificData');
-
         },
         
     },

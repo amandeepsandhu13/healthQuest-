@@ -15,5 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "primeicons": "^7.0.0",
+    "primereact": "^10.8.2"
   }
 }
