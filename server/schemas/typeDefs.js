@@ -9,10 +9,7 @@ const typeDefs = `
     height: Float 
     weight:Float 
     goal:String 
-    thoughts: [Thought]!
     exerciseLogs: [ExerciseLog]
-
-
   }
 
   type ExerciseCategory {
@@ -20,28 +17,21 @@ const typeDefs = `
     name: String!
   }
 
-    type ExerciseLog {
-    _id: ID!
-    user: User!
-    category: ExerciseCategory!
-    duration: Int!
-    date: String!
-  }
+input ExerciseLogInput {
+  categoryId: ID!
+  duration: Int!
+  date: String
+}
 
-  type Thought {
-    _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
-  }
+type ExerciseLog {
+  _id: ID!
+  categoryId: ID!
+  duration: Int!
+  date: String!
+  userId: ID!
+}
 
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
-  }
+
 
   type Auth {
     token: ID!
@@ -53,10 +43,8 @@ const typeDefs = `
     user(username: String!): User
     exerciseCategories: [ExerciseCategory]
     exerciseLogs(userId: ID!): [ExerciseLog]
-    
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
     me: User
+
   }
 
   type Mutation {
@@ -64,13 +52,9 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
 
     addExerciseCategory(name: String!): ExerciseCategory
-    addExerciseLog(categoryId: ID!, duration: Int!): ExerciseLog
+    addExerciseLog(input: ExerciseLogInput!): ExerciseLog
 
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
-
+ 
   }
 `;
 

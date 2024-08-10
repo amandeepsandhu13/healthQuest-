@@ -1,4 +1,4 @@
-const { User, Thought, ExerciseCategory, ExerciseLog } = require("../models");
+const { User, ExerciseCategory, ExerciseLog } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
 const resolvers = {
@@ -7,10 +7,12 @@ const resolvers = {
             // return User.find().populate('thoughts');
             return User.find();
         },
-        user: async (parent, { username }) => {
-            // return User.findOne({ username }).populate("thoughts");
-            return User.findOne({ username });
-        },
+        user: async (parent, { username }, context) => {
+          if (context.user) {
+              return User.findOne({ username }).populate('exerciseLogs');
+          }
+          throw new AuthenticationError('You need to be logged in!');
+      },
 
         exerciseCategories: async () => {
           return await ExerciseCategory.find();
@@ -20,21 +22,15 @@ const resolvers = {
           return await ExerciseLog.find({ user: userId }).populate('category');
         },
 
-        // thoughts: async (parent, { username }) => {
-        //     const params = username ? { username } : {};
-        //     return Thought.find(params).sort({ createdAt: -1 });
-        // },
-        // thought: async (parent, { thoughtId }) => {
-        //     return Thought.findOne({ _id: thoughtId });
-        // },
         me: async (parent, args, context) => {
-            if (context.user) {
-                return User.findOne({ _id: context.user._id }).populate(
-                    "thoughts"
-                );
-            }
-            throw AuthenticationError;
-        },
+          if (context.user) {
+            console.log('Context User:', context.user);
+            const user = await User.findOne({ _id: context.user._id }).populate('exerciseLogs');
+            console.log('User with Exercise Logs:', user);
+            return user;          }
+          throw new AuthenticationError('You need to be logged in!');
+      },
+      
     },
 
     Mutation: {
@@ -79,86 +75,32 @@ const resolvers = {
           await category.save();
           return category;
         },
-        addExerciseLog: async (_, { categoryId, duration }, context) => {
-          if (!context.user) throw AuthenticationError;
-          const log = new ExerciseLog({
-            user: context.user._id,
-            category: categoryId,
-            duration,
-          });
-          await log.save();
-          return log.populate('category');
+        addExerciseLog: async (parent, { input }, context) => {
+          if (!context.user) {
+            throw new AuthenticationError('You need to be logged in!');
+          }
+          try {       
+            
+            const { categoryId, duration, date } = input;
+          
+            const newLog = await ExerciseLog.create({
+              user: context.user._id, // Correctly reference the user
+              category: categoryId,
+              duration,
+              date
+            });
+        
+            return {
+              ...newLog._doc,
+              userId: newLog.user, 
+              categoryId: newLog.category };
+          } catch (error) {
+            console.error(error);
+            throw new Error('Failed to create exercise log');
+          }
         },
 
-        // addThought: async (parent, { thoughtText }, context) => {
-        //     if (context.user) {
-        //         const thought = await Thought.create({
-        //             thoughtText,
-        //             thoughtAuthor: context.user.username,
-        //         });
-
-        //         await User.findOneAndUpdate(
-        //             { _id: context.user._id },
-        //             { $addToSet: { thoughts: thought._id } }
-        //         );
-
-        //         return thought;
-        //     }
-        //     throw AuthenticationError;
-        // },
-        // addComment: async (parent, { thoughtId, commentText }, context) => {
-        //     if (context.user) {
-        //         return Thought.findOneAndUpdate(
-        //             { _id: thoughtId },
-        //             {
-        //                 $addToSet: {
-        //                     comments: {
-        //                         commentText,
-        //                         commentAuthor: context.user.username,
-        //                     },
-        //                 },
-        //             },
-        //             {
-        //                 new: true,
-        //                 runValidators: true,
-        //             }
-        //         );
-        //     }
-        //     throw AuthenticationError;
-        // },
-        // removeThought: async (parent, { thoughtId }, context) => {
-        //     if (context.user) {
-        //         const thought = await Thought.findOneAndDelete({
-        //             _id: thoughtId,
-        //             thoughtAuthor: context.user.username,
-        //         });
-
-        //         await User.findOneAndUpdate(
-        //             { _id: context.user._id },
-        //             { $pull: { thoughts: thought._id } }
-        //         );
-
-        //         return thought;
-        //     }
-        //     throw AuthenticationError;
-        // },
-        // removeComment: async (parent, { thoughtId, commentId }, context) => {
-        //     if (context.user) {
-        //         return Thought.findOneAndUpdate(
-        //             { _id: thoughtId },
-        //             {
-        //                 $pull: {
-        //                     comments: {
-        //                         _id: commentId,
-        //                         commentAuthor: context.user.username,
-        //                     },
-        //                 },
-        //             },
-        //             { new: true }
-        //         );
-        //     }
-        //     throw AuthenticationError;
-        // },
+       
     },
 };
 
