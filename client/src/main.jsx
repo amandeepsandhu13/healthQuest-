@@ -11,49 +11,54 @@ import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 import Workouts from "./pages/Workouts";
 import Me from "./pages/me";
+import About from "./pages/About";
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        errorElement: <Error />,
-        children: [
-            {
-                index: true,
-                element: <Home />,
-            },
-            {
-                path: "/login",
-                element: <Login />,
-            },
-            {
-                path: "/signup",
-                element: <Signup />,
-            },
-            {
-                path: "/profile",
-                element: <Profile />,
-            },
-            {
-                path: "/me",
-                element: <Me />,
-            },
-            {
-                path: "/workouts",
-                element: <Workouts />,
-            },
-            {
-                path: "/profiles/:username",
-                element: <Profile />,
-            },
-            {
-                path: "/thoughts/:thoughtId",
-                element: <SingleThought />,
-            },
-        ],
-    },
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/me",
+        element: <Me />,
+      },
+      {
+        path: "/workouts",
+        element: <Workouts />,
+      },
+      {
+        path: "/profiles/:username",
+        element: <Profile />,
+      },
+      {
+        path: "/thoughts/:thoughtId",
+        element: <SingleThought />,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
+  <RouterProvider router={router} />
 );

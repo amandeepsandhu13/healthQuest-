@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* Footer Text and Button Styles */
+
+/* Button styles */
+.p-button-link {
+  background-color: transparent; /* Make the button background transparent */
+  border: none; /* Remove border */
+  color: #007bff; /* Button text color (adjust as needed) */
+  font-size: 1rem; /* Adjust font size if needed */
+  padding: 0.3rem 0.8rem; /* Adjust padding for button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.p-button-link:hover {
+  color: #0056b3; /* Change text color on hover */
+}
+
+/* Light text color */
+.p-text-light {
+  color: #6c757d; /* Light text color for the button (adjust as needed) */
+}
