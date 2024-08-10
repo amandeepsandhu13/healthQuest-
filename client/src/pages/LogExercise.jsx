@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_EXERCISE_LOG } from '../utils/mutations'; // Ensure this mutation is correctly defined in `mutations.js`
 import Auth from '../utils/auth';
+import { Navigate, useParams } from "react-router-dom";
+
 
 const LogExercise = () => {
   const [category, setCategory] = useState('yoga');
@@ -51,12 +53,13 @@ const LogExercise = () => {
           date
         }  
       });  
-      
+
       // Clear form
       setCategory('yoga');
       setCategorySpecificData({});
       setDuration('');
       setDate('');
+
     } catch (err) {
       console.error(err);
     }
@@ -64,7 +67,7 @@ const LogExercise = () => {
 
 
   if (!Auth.loggedIn()) {
-    return null;
+    return <Navigate to="/login" />;
   }
 
 
@@ -134,10 +137,10 @@ const LogExercise = () => {
           <input type="number" id="duration" value={duration} onChange={(e) => setDuration(e.target.value)} />
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="date">Date:</label>
           <input type="date" id="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        </div>
+        </div> */}
 
         <button type="submit">Add Exercise Log</button>
 
