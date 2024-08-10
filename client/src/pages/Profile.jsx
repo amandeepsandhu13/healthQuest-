@@ -3,6 +3,8 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
+import { Link } from 'react-router-dom';
+
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -43,6 +45,8 @@ const Profile = () => {
 
         {/* Exercise Log List */}
         <div className="col-12 col-md-10 mb-5">
+        <Link to="/log-exercise" className="btn btn-primary m-2">Log New Exercise</Link>
+
           <h3>Exercise Logs:</h3>
           {user.exerciseLogs.map((log) => (
             <div key={log._id} className="card mb-3">
@@ -50,6 +54,7 @@ const Profile = () => {
                 <h4 className="card-title">Category: {log.category}</h4>
                 <p>Duration: {log.duration} minutes</p>
                 <p>Date: {new Date(parseInt(log.date)).toLocaleDateString()}</p>
+                <button>Delete</button>
 
                 {/* Dynamically Render category-specific data */}
                 {log.categorySpecificData && (
