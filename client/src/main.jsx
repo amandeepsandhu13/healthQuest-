@@ -10,10 +10,6 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Error from './pages/Error';
 import LogExercise from './pages/LogExercise'; // Import LogExercise component
-import ExerciseLogList from './pages/ExerciseLogList'; // Import ExerciseLogList component
-import AddExerciseCategory from './pages/AddExerciseCategory'; // Import the new page
-
-
 
 const router = createBrowserRouter([
   {
