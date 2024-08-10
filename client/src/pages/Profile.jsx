@@ -35,7 +35,8 @@ const Profile = () => {
       </h4>
     );
   }
-
+ // Filter completed exercises
+ const completedLogs = user.exerciseLogs.filter(log => log.isCompleted);
   return (
     <div>
       <div className="flex-row justify-center mb-3">
@@ -47,11 +48,12 @@ const Profile = () => {
         <div className="col-12 col-md-10 mb-5">
         <Link to="/log-exercise" className="btn btn-primary m-2">Log New Exercise</Link>
 
-          <h3>Exercise Logs:</h3>
+          <h3>Completed Exercise Logs:</h3>
+          
           {user.exerciseLogs.map((log) => (
             <div key={log._id} className="card mb-3">
               <div className="card-body">
-                <h4 className="card-title">Category: {log.category}</h4>
+                <h4 className="card-title">Activity Completed: {log.category}</h4>
                 <p>Duration: {log.duration} minutes</p>
                 <p>Date: {new Date(parseInt(log.date)).toLocaleDateString()}</p>
                 <button>Delete</button>
@@ -74,7 +76,7 @@ const Profile = () => {
                             </h5>
                             {Object.entries(categoryData).map(
                               ([field, value]) =>
-                                value && (
+                                field !== "__typename" && value && (
                                   <p key={field}>
                                     {field.charAt(0).toUpperCase() +
                                       field.slice(1)}
