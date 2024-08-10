@@ -5,6 +5,19 @@ import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 import { Link } from 'react-router-dom';
 
+const aggregateActivities = (logs) => {
+  // Group activities by date
+  const groupedByDate = logs.reduce((acc, log) => {
+    const date = new Date(parseInt(log.date)).toLocaleDateString();
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(log);
+    return acc;
+  }, {});
+
+  return groupedByDate;
+};
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -35,8 +48,10 @@ const Profile = () => {
       </h4>
     );
   }
- // Filter completed exercises
- const completedLogs = user.exerciseLogs.filter(log => log.isCompleted);
+
+  // Aggregate activities
+  const groupedActivities = aggregateActivities(user.exerciseLogs);
+
   return (
     <div>
       <div className="flex-row justify-center mb-3">
@@ -46,51 +61,53 @@ const Profile = () => {
 
         {/* Exercise Log List */}
         <div className="col-12 col-md-10 mb-5">
-        <Link to="/log-exercise" className="btn btn-primary m-2">Log New Exercise</Link>
+          <Link to="/log-exercise" className="btn btn-primary m-2">Log New Exercise</Link>
 
-          <h3>Completed Exercise Logs:</h3>
-          
-          {user.exerciseLogs.map((log) => (
-            <div key={log._id} className="card mb-3">
+          <h3>Exercise Logs:</h3>
+          {Object.keys(groupedActivities).map(date => (
+            <div key={date} className="card mb-3">
               <div className="card-body">
-                <h4 className="card-title">Activity Completed: {log.category}</h4>
-                <p>Duration: {log.duration} minutes</p>
-                <p>Date: {new Date(parseInt(log.date)).toLocaleDateString()}</p>
-                <button>Delete</button>
+                <h4 className="card-title">Date: {date}</h4>
+                {groupedActivities[date].map(log => (
+                  <div key={log._id}>
+                    <p>Activity Completed: {log.category}</p>
+                    <p>Duration: {log.duration} minutes</p>
 
-                {/* Dynamically Render category-specific data */}
-                {log.categorySpecificData && (
-                  <div>
-                    {Object.keys(log.categorySpecificData).map((key) => {
-                      if (key === "__typename") return null; // Skip the __typename field
-                      const categoryData = log.categorySpecificData[key];
-                      if (
-                        categoryData &&
-                        Object.keys(categoryData).length > 0
-                      ) {
-                        return (
-                          <div key={key}>
-                            <h5>
-                              {key.charAt(0).toUpperCase() + key.slice(1)}{" "}
-                              Details:
-                            </h5>
-                            {Object.entries(categoryData).map(
-                              ([field, value]) =>
-                                field !== "__typename" && value && (
-                                  <p key={field}>
-                                    {field.charAt(0).toUpperCase() +
-                                      field.slice(1)}
-                                    : {value}
-                                  </p>
-                                )
-                            )}
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
+                    {/* Dynamically Render category-specific data */}
+                    {log.categorySpecificData && (
+                      <div>
+                        {Object.keys(log.categorySpecificData).map((key) => {
+                          if (key === "__typename") return null; // Skip the __typename field
+                          const categoryData = log.categorySpecificData[key];
+                          if (
+                            categoryData &&
+                            Object.keys(categoryData).length > 0
+                          ) {
+                            return (
+                              <div key={key}>
+                                <h5>
+                                  {key.charAt(0).toUpperCase() + key.slice(1)}{" "}
+                                  Details:
+                                </h5>
+                                {Object.entries(categoryData).map(
+                                  ([field, value]) =>
+                                    field !== "__typename" &&  value && (
+                                      <p key={field}>
+                                        {field.charAt(0).toUpperCase() +
+                                          field.slice(1)}
+                                        : {value}
+                                      </p>
+                                    )
+                                )}
+                              </div>
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
               </div>
             </div>
           ))}
