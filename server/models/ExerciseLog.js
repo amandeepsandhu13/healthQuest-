@@ -25,7 +25,7 @@ const exerciseLogSchema = new Schema({
   category: { type: String, required: true, enum: ['yoga', 'stretching', 'weightlifting', 'cardio'] },
   categorySpecificData: categorySpecificSchema,
   duration: { type: Number, required: true },
-  date: { type: Date, required: true },
+  date: { type: Date,  default: Date.now, },
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
