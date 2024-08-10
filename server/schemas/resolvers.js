@@ -88,7 +88,7 @@ const resolvers = {
               category,
               categorySpecificData,
               duration,
-              date,
+              // date,
               userId: context.user._id
 
             });
