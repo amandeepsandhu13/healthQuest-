@@ -1,24 +1,32 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const exerciseLogSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+const categorySpecificSchema = new Schema({
+  yoga: {
+    instructor: { type: String },
+    level: { type: String, enum: ['Beginner', 'Intermediate', 'Advanced'] }
   },
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'ExerciseCategory',
-    required: true,
+  stretching: {
+    equipment: { type: String },
+    focus: { type: String }
   },
-  duration: {
-    type: Number,
-    required: true,
+  weightlifting: {
+    sets: { type: Number },
+    reps: { type: Number },
+    weight: { type: Number } // Weight in kg
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  cardio: {
+    distance: { type: Number }, // Distance in km
+    intensity: { type: String, enum: ['Low', 'Medium', 'High'] }
+  }
+}, { _id: false });
+
+const exerciseLogSchema = new Schema({
+  category: { type: String, required: true, enum: ['yoga', 'stretching', 'weightlifting', 'cardio'] },
+  categorySpecificData: categorySpecificSchema,
+  duration: { type: Number, required: true },
+  date: { type: Date, required: true },
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
 const ExerciseLog = mongoose.model('ExerciseLog', exerciseLogSchema);
