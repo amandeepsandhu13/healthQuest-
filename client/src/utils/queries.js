@@ -48,14 +48,12 @@ export const QUERY_ME = gql`
     query me {
         me {
             _id
+            gender
+            goal
             username
-            email
-            thoughts {
-                _id
-                thoughtText
-                thoughtAuthor
-                createdAt
-            }
+            age
+            height
+            weight
         }
     }
 `;
