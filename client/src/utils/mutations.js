@@ -43,33 +43,64 @@ export const ADD_USER = gql`
     }
 `;
 
-export const ADD_THOUGHT = gql`
-    mutation addThought($thoughtText: String!) {
-        addThought(thoughtText: $thoughtText) {
+export const ADD_EXERCISE_LOG = gql`
+ mutation addExerciseLog(
+    $category: String!
+    $categorySpecificData: CategorySpecificDataInput!
+    $duration: Int!
+    $date: String!
+  ) {
+    addExerciseLog(
+      category: $category
+      categorySpecificData: $categorySpecificData
+      duration: $duration
+      date: $date
+    ){
+      _id
+      category
+      categorySpecificData {
+        yoga {
+          instructor
+          level
+        }
+        stretching {
+          equipment
+          focus
+        }
+        weightlifting {
+          sets
+          reps
+          weight
+        }
+        cardio {
+          distance
+          intensity
+        }
+      }
+      duration
+      date
+      userId
+    }
+  }
+`;
+
+
+
+export const ADD_EXERCISE_CATEGORY = gql`
+    mutation addExerciseCategory($name: String!) {
+        addExerciseCategory(name: $name) {
             _id
-            thoughtText
-            thoughtAuthor
-            createdAt
-            comments {
-                _id
-                commentText
-            }
+            name
         }
     }
 `;
 
-export const ADD_COMMENT = gql`
-    mutation addComment($thoughtId: ID!, $commentText: String!) {
-        addComment(thoughtId: $thoughtId, commentText: $commentText) {
+
+export const GET_EXERCISE_CATEGORIES = gql`
+    query getExerciseCategories {
+        exerciseCategories {
             _id
-            thoughtText
-            thoughtAuthor
-            createdAt
-            comments {
-                _id
-                commentText
-                createdAt
-            }
+            name
         }
     }
 `;
