@@ -46,7 +46,7 @@ const Profile = () => {
               <ul className="list-group">
                 {user.exerciseLogs.map((log) => (
                   <li key={log._id} className="list-group-item">
-                    <strong>Category:</strong> {log.category}<br />
+                    {/* <strong>Category:</strong> {log.category}<br /> */}
                     <strong>Details:</strong> {JSON.stringify(log.categorySpecificData, null, 2)}<br />
                     <strong>Duration:</strong> {log.duration} minutes<br />
                     <strong>Date:</strong> {new Date(log.date).toLocaleDateString()}
