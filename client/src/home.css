@@ -1,0 +1,103 @@
+/* Home.css */
+
+/* Banner Section */
+.banner-home {
+    background: url('./assets/images/equipment.jpg') no-repeat center center;
+    background: url('./assets/images/equipment.jpg') no-repeat center center;
+    background-size: contain; /* Cover the entire banner area */
+    height: 400px; /* Adjust height based on design requirements */
+    display: flex;
+    align-items: center;
+    color: white;
+    position: relative;
+    background-attachment: fixed;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .banner-home::before {
+    content: ''; /* Empty content for the overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Grey overlay with opacity */
+    z-index: 1; /* Ensure overlay is above the background but below text */
+  }
+  
+  .banner-home-content {
+    position: relative; /* Ensure content is above the overlay */
+    z-index: 2;
+    left: 20px; /* Adjust positioning as needed */
+    top: 30%;
+    transform: translateY(-50%);
+    max-width: 50%; /* Ensure content does not overflow */
+  }
+  
+  .banner-home-content h1 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .banner-home-content p {
+    font-size: 1.2rem;
+  }
+
+/* Our Team Section */
+.our-team {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .our-team h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333; /* Adjust to match your theme */
+  }
+  
+  .team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust space between team members */
+    justify-content: center;
+  }
+  
+  .team-member {
+    background-color: #f9f9f9; /* Light background for cards */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden;
+    text-align: center;
+    width: 200px; /* Fixed width for consistency */
+    padding: 10px;
+  }
+  
+  .team-member img {
+    width: 100%;
+    height: 70%;
+    border-radius: 50%; /* Circular profile image */
+  }
+  
+  .team-member h3 {
+    margin: 10px 0 5px;
+    font-size: 1.2rem;
+  }
+  
+  .team-member p {
+    font-size: 1rem;
+    color: #666; /* Subtle color for roles */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .team-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .team-member {
+      width: 100%;
+      max-width: 300px; /* Max width for better readability on small screens */
+    }
+  }
