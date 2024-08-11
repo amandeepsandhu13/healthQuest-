@@ -6,7 +6,6 @@ import App from './App.jsx'
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Error from './pages/Error';
 import LogExercise from './pages/LogExercise'; // Import LogExercise component
@@ -36,6 +35,7 @@ const router = createBrowserRouter([
         path: '/log-exercise', // New route for logging exercises
         element: <LogExercise />,
       },
+   
       // {
       // path: '/add-exercise-category' ,
       // element: <AddExerciseCategory />,

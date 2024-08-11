@@ -1,4 +1,5 @@
 import React from "react";
+import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
@@ -21,8 +22,10 @@ const aggregateActivities = (logs) => {
 
 const Profile = () => {
   const { username: userParam } = useParams();
+  const { username: userParam } = useParams();
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
     variables: { username: userParam },
   });
 
@@ -33,9 +36,17 @@ const Profile = () => {
     Auth.loggedIn() &&
     Auth.getProfile().data.username === userParam
   ) {
+  if (
+    userParam &&
+    Auth.loggedIn() &&
+    Auth.getProfile().data.username === userParam
+  ) {
     return <Navigate to="/me" />;
   }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -52,6 +63,12 @@ const Profile = () => {
   // Aggregate activities
   const groupedActivities = aggregateActivities(user.exerciseLogs);
 
+  return (
+    <div>
+      <div className="flex-row justify-center mb-3">
+        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+          Viewing {userParam ? `${user.username}'s` : "your"} profile.
+        </h2>
   return (
     <div>
       <div className="flex-row justify-center mb-3">

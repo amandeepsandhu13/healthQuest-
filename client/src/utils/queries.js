@@ -50,6 +50,11 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      gender
+      goal
+      age
+       height
+       weight
        exerciseLogs {
         _id
         category
@@ -71,6 +76,7 @@ export const QUERY_ME = gql`
             distance
             intensity
           }
+
         }
         duration
         date
