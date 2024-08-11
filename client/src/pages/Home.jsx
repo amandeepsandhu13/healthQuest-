@@ -35,33 +35,14 @@ const Home = () => {
               <div className="flex-row justify-center">
             <div className="card-body">
             <p>Welcome to HealthQuest! Select an option below to manage your exercise logs.</p>
-            <Link to="/log-exercise" className="btn btn-primary m-2">Log New Exercise</Link>
+            <Link to="/log-exercise" className="btn btn-primary m-2">Log Today's Activity</Link>
             <Link className="btn btn-primary m-2" to="/me">
                 View Activities Log
               </Link>
             {/* <Link to="/add-exercise-category" className="btn btn-primary m-2">Add Categories</Link> */}
-            
+            </div>
           </div>
-      {/* <div className="flex-row justify-center"> */}
-      {/* <div
-          className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
-        >
-          <ThoughtForm />
-        </div> */}
-      {/* <div className="col-12 col-md-8 mb-3">
-                    {loading ? (
-                        <div>Loading...</div>
-                    ) : (
-                        <ThoughtList
-                            thoughts={thoughts}
-                            title="Some Feed for Thought(s)..."
-                        />
-                    )}
-                </div> */}
-      {/* </div> */}
-
-      {/* Banner Section */}
+    
       <section className="banner-home">
         <div className="banner-home-content">
           <h1>YOUR PERSONAL FITNESS JUST GOT BETTER</h1>

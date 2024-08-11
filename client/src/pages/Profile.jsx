@@ -87,7 +87,7 @@ const Profile = () => {
                                 </h5>
                                 {Object.entries(categoryData).map(
                                   ([field, value]) =>
-                                    value && (
+                                    (key === "__typename") && value && (
                                       <p key={field}>
                                         {field.charAt(0).toUpperCase() +
                                           field.slice(1)}
