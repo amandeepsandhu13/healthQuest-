@@ -1,13 +1,11 @@
-// import { useQuery } from "@apollo/client";
-import "../home.css";
-// import ThoughtList from "../components/ThoughtList";
-// import ThoughtForm from "../components/ThoughtForm";
+import { useQuery } from "@apollo/client";
+import { Link } from 'react-router-dom';
 
-// import { QUERY_THOUGHTS } from "../utils/queries";
+import "../home.css";
+
 
 const Home = () => {
-  // const { loading, data } = useQuery(QUERY_THOUGHTS);
-  // const thoughts = data?.thoughts || [];
+ 
 
   const teamMembers = [
     {
@@ -34,6 +32,16 @@ const Home = () => {
 
   return (
     <main>
+              <div className="flex-row justify-center">
+            <div className="card-body">
+            <p>Welcome to HealthQuest! Select an option below to manage your exercise logs.</p>
+            <Link to="/log-exercise" className="btn btn-primary m-2">Log New Exercise</Link>
+            <Link className="btn btn-primary m-2" to="/me">
+                View Activities Log
+              </Link>
+            {/* <Link to="/add-exercise-category" className="btn btn-primary m-2">Add Categories</Link> */}
+            
+          </div>
       {/* <div className="flex-row justify-center"> */}
       {/* <div
           className="col-12 col-md-10 mb-3 p-3"
@@ -94,6 +102,7 @@ const Home = () => {
               <img src={member.imgSrc} alt={member.name} />
               <h3>{member.name}</h3>
               <p>{member.role}</p>
+
             </div>
           ))}
         </div>

@@ -25,12 +25,9 @@ const userSchema = new Schema({
     height: { type: Number, required: true },
     weight: { type: Number, required: true },
     goal: { type: String, required: true },
-    // thoughts: [
-    //     {
-    //         type: Schema.Types.ObjectId,
-    //         ref: "Thought",
-    //     },
-    // ],
+    
+    exerciseLogs: [{ type: Schema.Types.ObjectId, ref: 'ExerciseLog' }]
+
 });
 
 userSchema.pre("save", async function (next) {

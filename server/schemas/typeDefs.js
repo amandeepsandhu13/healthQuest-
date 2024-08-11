@@ -7,24 +7,57 @@ const typeDefs = `
     gender: String 
     age: Int 
     height: Float 
-    weight:Float 
-    goal:String 
-    thoughts: [Thought]!
+    weight: Float 
+    goal: String 
+    exerciseLogs: [ExerciseLog]
   }
 
-  type Thought {
-    _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+  type ExerciseCategory {
+    _id: ID!
+    name: String!
   }
 
-  type Comment {
-    _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+  input ExerciseLogInput {
+    categoryId: ID!
+    duration: Int!
+    date: String
+  }
+
+  type ExerciseLog {
+    _id: ID!
+    category: String!
+    categorySpecificData: CategorySpecificData
+    duration: Int!
+    date: String!
+    userId: ID!
+  }
+  
+  type CategorySpecificData {
+    yoga: YogaData
+    stretching: StretchingData
+    weightlifting: WeightliftingData
+    cardio: CardioData
+  }
+  
+  type YogaData {
+    instructor: String
+    level: String
+  }
+
+  type StretchingData {
+    equipment: String
+    focus: String
+  }
+
+  type WeightliftingData {
+    sets: Int
+    reps: Int
+    weight: Float
+  }
+
+  type CardioData {
+    distance: Float
+    intensity: String
   }
 
   type Auth {
@@ -35,18 +68,46 @@ const typeDefs = `
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    exerciseCategories: [ExerciseCategory]
+    exerciseLogs(userId: ID!): [ExerciseLog]
+    getExerciseLogs(userId: ID!): [ExerciseLog]
     me: User
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!, gender:String!, age: Int!, height: Float!, weight: Float!, goal: String!): Auth
+    addUser(username: String!, email: String!, password: String!, gender: String!, age: Int!, height: Float!, weight: Float!, goal: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+
+    addExerciseCategory(name: String!): ExerciseCategory
+    addExerciseLog(category: String!, categorySpecificData: CategorySpecificDataInput!, duration: Int!, date: String!): ExerciseLog
+  }
+
+  input CategorySpecificDataInput {
+    yoga: YogaDataInput
+    stretching: StretchingDataInput
+    weightlifting: WeightliftingDataInput
+    cardio: CardioDataInput
+  }
+
+  input YogaDataInput {
+    instructor: String
+    level: String
+  }
+
+  input StretchingDataInput {
+    equipment: String
+    focus: String
+  }
+
+  input WeightliftingDataInput {
+    sets: Int
+    reps: Int
+    weight: Float
+  }
+
+  input CardioDataInput {
+    distance: Float
+    intensity: String
   }
 `;
 

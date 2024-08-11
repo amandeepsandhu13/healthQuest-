@@ -1,59 +1,86 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-    query user($username: String!) {
-        user(username: $username) {
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      gender
+      exerciseLogs {
+        _id
+        category
+        categorySpecificData {
+          yoga {
+            instructor
+            level
+          }
+         
+        }
+        duration
+        date
+      }
+    }
+  }
+`;
+export const GET_EXERCISE_CATEGORIES = gql`
+    query getExerciseCategories {
+        exerciseCategories {
             _id
-            username
-            email
-            gender
-            thoughts {
-                _id
-                thoughtText
-                createdAt
-            }
+            name
         }
     }
 `;
 
-export const QUERY_THOUGHTS = gql`
-    query getThoughts {
-        thoughts {
-            _id
-            thoughtText
-            thoughtAuthor
-            createdAt
-        }
-    }
+export const GET_EXERCISE_LOGS = gql`
+query getExerciseLogs($userId: ID!) {
+  exerciseLogs(userId: $userId) {
+    _id
+    categoryId 
+    duration
+    date
+  }
+}
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-    query getSingleThought($thoughtId: ID!) {
-        thought(thoughtId: $thoughtId) {
-            _id
-            thoughtText
-            thoughtAuthor
-            createdAt
-            comments {
-                _id
-                commentText
-                commentAuthor
-                createdAt
-            }
-        }
-    }
-`;
 
 export const QUERY_ME = gql`
-    query me {
-        me {
-            _id
-            gender
-            goal
-            username
-            age
-            height
+  query {
+    me {
+      _id
+      username
+      email
+      gender
+      goal
+      age
+       height
+       weight
+       exerciseLogs {
+        _id
+        category
+        categorySpecificData {
+          yoga {
+            instructor
+            level
+          }
+          stretching {
+            equipment
+            focus
+          }
+          weightlifting {
+            sets
+            reps
             weight
+          }
+          cardio {
+            distance
+            intensity
+          }
+
         }
+        duration
+        date
+      }
     }
+  }
 `;
