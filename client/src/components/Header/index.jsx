@@ -20,35 +20,37 @@ const Header = () => {
           </Link>
         </div>
         <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
-                {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
-                {Auth.getProfile().authenticatedPerson.username}'s profile
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-light m-2" to="/about">
-                About
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/profile">
-                Profile
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/workouts">
-                Workouts
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-info m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
+        {Auth.loggedIn() ? (
+  <>
+    <Link className="btn btn-lg btn-light m-2" to="/about">
+      About
+    </Link>
+    <Link className="btn btn-lg btn-light m-2" to="/workouts">
+      Workouts
+    </Link>
+    <Link className="btn btn-lg btn-info m-2" to="/me">
+      {Auth.getProfile().authenticatedPerson.username}'s profile
+    </Link>
+    <button className="btn btn-lg btn-light m-2" onClick={logout}>
+      Logout
+    </button>
+  </>
+) : (
+  <>
+    <Link className="btn btn-lg btn-light m-2" to="/about">
+      About
+    </Link>
+    <Link className="btn btn-lg btn-light m-2" to="/workouts">
+      Workouts
+    </Link>
+    <Link className="btn btn-lg btn-light m-2" to="/login">
+      Login
+    </Link>
+    <Link className="btn btn-lg btn-info m-2" to="/signup">
+      Signup
+    </Link>
+  </>
+)}
         </div>
       </div>
     </header>
