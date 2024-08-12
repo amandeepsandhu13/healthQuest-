@@ -72,6 +72,7 @@ const typeDefs = `
     exerciseLogs(userId: ID!): [ExerciseLog]
     getExerciseLogs(userId: ID!): [ExerciseLog]
     me: User
+    getEachExercise(_id: ID!): ExerciseLog 
   }
 
   type Mutation {
