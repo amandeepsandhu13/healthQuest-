@@ -65,51 +65,34 @@ const Profile = () => {
 
           <h3>Exercise Logs:</h3>
           {Object.keys(groupedActivities).map((date) => (
-            <div key={date} className="card mb-3">
-              <div className="card-body">
-                <h4 className="card-title">Date: {date}</h4>
-                {groupedActivities[date].map((log, logIndex) => (
-                  <React.Fragment key={log._id}>
+            <div key={date}>
+              <h4 className="text-center">{date}</h4>
+              {groupedActivities[date].map((log) => (
+                <div key={log._id} className="card mb-3">
+                  <div className="card-body">
                     <p>Activity Completed: {log.category}</p>
                     <p>Duration: {log.duration} minutes</p>
 
-                    {/* Dynamically Render category-specific data */}
-                    {log.categorySpecificData && (
+                    {/* Render only the relevant details based on the activity completed */}
+                    {log.categorySpecificData && log.categorySpecificData[log.category.toLowerCase()] && (
                       <div>
-                        {Object.keys(log.categorySpecificData).map((key) => {
-                          if (key === "__typename") return null; // Skip the __typename field
-                          const categoryData = log.categorySpecificData[key];
-                          if (categoryData && Object.keys(categoryData).length > 0) {
-                            return (
-                              <div key={key}>
-                                <h5>
-                                  {key.charAt(0).toUpperCase() + key.slice(1)} Details:
-                                </h5>
-                                {Object.entries(categoryData).map(
-                                  ([field, value]) =>
-                                    (key === "__typename") && value && (
-                                      <p key={field}>
-                                        {field.charAt(0).toUpperCase() +
-                                          field.slice(1)}
-                                        : {value}
-                                      </p>
-                                    )
-                                )}
-                              </div>
-                            );
-                          }
-                          return null;
-                        })}
+                        <h5>
+                          {log.category.charAt(0).toUpperCase() + log.category.slice(1)} Details:
+                        </h5>
+                        {Object.entries(log.categorySpecificData[log.category.toLowerCase()])
+                          .filter(([field]) => field !== "__typename")
+                          .map(([field, value]) => (
+                            <p key={field}>
+                              {field.charAt(0).toUpperCase() +
+                                field.slice(1)}
+                              : {value}
+                            </p>
+                          ))}
                       </div>
                     )}
-
-                    {/* Add a divider line between logs */}
-                    {logIndex < groupedActivities[date].length - 1 && (
-                      <div className="activity-divider"></div>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
         </div>
