@@ -94,7 +94,7 @@ const Profile = () => {
                                         : {value}
                                       </p>
                                     )
-                                )}
+                                )} 
                               </div>
                             );
                           }
