@@ -1,20 +1,44 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "@apollo/client";
 import { GET_EACH_EXERCISE } from "../utils/queries";
+import { DELETE_EXERCISE_LOG } from "../utils/mutations";
 
 const ActivityDetails = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
+
+    // Fetch the exercise log details
     const { loading, data } = useQuery(GET_EACH_EXERCISE, {
         variables: { id },
     });
 
-    if (loading) {
+    // Mutation for deleting the exercise log
+    const [deleteExerciseLog, { loading: deleteLoading }] = useMutation(
+        DELETE_EXERCISE_LOG,
+        {
+            onCompleted: () => {
+                alert("Exercise log deleted successfully.");
+                navigate("/me");
+            },
+            onError: (error) => {
+                console.error("Error deleting exercise log:", error);
+                alert("Failed to delete exercise log.");
+            },
+        }
+    );
+
+    if (loading || deleteLoading) {
         return <div>Loading...</div>;
     }
 
     const log = data?.getEachExercise || {};
-    console.log(log);
+
+    const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete this activity?")) {
+            deleteExerciseLog({ variables: { id } });
+        }
+    };
 
     return (
         <div>
@@ -22,6 +46,7 @@ const ActivityDetails = () => {
             <p>Category: {log.category}</p>
             <p>Duration: {log.duration} minutes</p>
             <p>Date: {new Date(parseInt(log.date)).toLocaleString()}</p>
+
             {log.categorySpecificData && (
                 <div>
                     {log.category === "yoga" && (
@@ -76,6 +101,9 @@ const ActivityDetails = () => {
                     )}
                 </div>
             )}
+            <button id="delete" onClick={handleDelete}>
+                Delete
+            </button>
         </div>
     );
 };
