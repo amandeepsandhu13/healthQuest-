@@ -85,6 +85,7 @@ const resolvers = {
             await category.save();
             return category;
         },
+
         addExerciseLog: async (parent, args, context) => {
             if (!context.user) {
                 throw new AuthenticationError("You need to be logged in!");
@@ -120,6 +121,42 @@ const resolvers = {
             } catch (error) {
                 console.error(error);
                 throw new Error("Failed to create exercise log");
+            }
+        },
+
+        // to delete the exercise session
+        deleteExerciseLog: async (parent, { _id }, context) => {
+            if (!context.user) {
+                throw new AuthenticationError("You need to be logged in!");
+            }
+
+            try {
+                // Find the exercise log to ensure it exists and belongs to the user
+                const log = await ExerciseLog.findOne({
+                    _id,
+                    userId: context.user._id,
+                });
+
+                if (!log) {
+                    throw new Error(
+                        "Exercise log not found or you do not have permission to delete it."
+                    );
+                }
+
+                // Delete the exercise log
+                await ExerciseLog.findByIdAndDelete(_id);
+
+                await User.findByIdAndUpdate(context.user._id, {
+                    $pull: { exerciseLogs: _id },
+                });
+
+                return {
+                    success: true,
+                    message: "Exercise log deleted successfully.",
+                };
+            } catch (error) {
+                console.error(error);
+                throw new Error("Failed to delete exercise log.");
             }
         },
     },

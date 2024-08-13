@@ -65,6 +65,11 @@ const typeDefs = `
     user: User
   }
 
+  type DeleteResponse {
+    success: Boolean!
+    message: String!
+}
+
   type Query {
     users: [User]
     user(username: String!): User
@@ -81,6 +86,8 @@ const typeDefs = `
 
     addExerciseCategory(name: String!): ExerciseCategory
     addExerciseLog(category: String!, categorySpecificData: CategorySpecificDataInput!, duration: Int!, date: String!): ExerciseLog
+
+    deleteExerciseLog(_id:ID!): DeleteResponse
   }
 
   input CategorySpecificDataInput {
