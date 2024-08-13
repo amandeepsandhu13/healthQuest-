@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom/dist";
-import 'primereact/resources/themes/saga-blue/theme.css'; // or your preferred theme
-import 'primereact/resources/primereact.min.css'; // core styles
-import 'primeicons/primeicons.css'; // icons
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css'; 
+import 'primeicons/primeicons.css';
 import "./index.css";
 
 import App from "./App.jsx";

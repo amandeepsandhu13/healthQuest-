@@ -49,19 +49,7 @@
 }
 
 .p-dropdown {
-    border-radius: 4px;
-    padding: 0.5rem;
     background-color: #ffffff;
-}
-
-.p-dropdown .p-dropdown-trigger {
-    border-radius: 4px ;
-    padding: 0.5rem;
-}
-
-.p-dropdown .p-dropdown-item {
-    padding: 0.5rem ;
-    border-radius: 4px ;
 }
 
 .p-dropdown .p-dropdown-item:hover {

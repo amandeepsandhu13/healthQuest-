@@ -8,7 +8,10 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
-import '../log-exercise.css'; // Add your styles here
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css'; 
+import '../log-exercise.css'; 
 
 const LogExercise = () => {
     const [category, setCategory] = useState("yoga");
