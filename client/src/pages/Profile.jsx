@@ -94,22 +94,24 @@ const Profile = () => {
                     </Card>
                 </div>
 
-                {/* Exercise Log List */}
-                <div className="exercise-logs">
-                                    <h3>Exercise Logs:</h3>
-                                    {Object.keys(groupedActivities).map((date) => (
-                                        <Card key={date} title={`Date: ${date}`} className="mb-3">
-                                            {groupedActivities[date].map((log) => (
-                                                <Button
-                                                    key={log._id}
-                                                    label={`Activity completed: ${capitalizeFirstLetter(log.category)} | Duration: ${log.duration} mins`}
-                                                    className="p-button-secondary mb-2"
-                                                    onClick={() => window.location.href = `/activity/${log._id}`}
-                                                />
-                            ))}
-                        </Card>
-                    ))}
+{/* Exercise Log List */}
+<div className="exercise-logs">
+    <h3>Exercise Logs:</h3>
+    {Object.keys(groupedActivities).map((date) => (
+        <Card key={date} title={`Date: ${date}`} className="mb-3">
+            {groupedActivities[date].map((log) => (
+                <div key={log._id} className="mb-2">
+                    <Button
+                        label={`Activity completed: ${capitalizeFirstLetter(log.category)} | Duration: ${log.duration} mins`}
+                        className="p-button-secondary"
+                        onClick={() => window.location.href = `/activity/${log._id}`}
+                    />
                 </div>
+            ))}
+        </Card>
+    ))}
+</div>
+
             </div>
         </div>
     );
