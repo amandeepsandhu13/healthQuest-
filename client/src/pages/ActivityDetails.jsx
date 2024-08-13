@@ -18,7 +18,6 @@ const ActivityDetails = () => {
         DELETE_EXERCISE_LOG,
         {
             onCompleted: () => {
-                alert("Exercise log deleted successfully.");
                 navigate("/me");
             },
             onError: (error) => {
