@@ -1,0 +1,69 @@
+.log-exercise-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.log-exercise-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.p-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.p-d-block {
+    display: block;
+}
+
+.p-button-primary {
+    align-self: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+}
+
+.p-text-center {
+    text-align: center;
+}
+
+.p-mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.p-field label {
+    font-weight: 600;
+}
+
+.p-field input,
+.p-field .p-inputtext,
+.p-field .p-inputnumber {
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.p-dropdown {
+    border-radius: 4px;
+    padding: 0.5rem;
+    background-color: #ffffff;
+}
+
+.p-dropdown .p-dropdown-trigger {
+    border-radius: 4px ;
+    padding: 0.5rem;
+}
+
+.p-dropdown .p-dropdown-item {
+    padding: 0.5rem ;
+    border-radius: 4px ;
+}
+
+.p-dropdown .p-dropdown-item:hover {
+    background-color: #e0e0e0 ;
+}

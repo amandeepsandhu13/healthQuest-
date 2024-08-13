@@ -6,7 +6,9 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { Outlet } from "react-router-dom";
-
+import 'primereact/resources/themes/saga-blue/theme.css'; // or your preferred theme
+import 'primereact/resources/primereact.min.css'; // core styles
+import 'primeicons/primeicons.css'; // icons
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./App.css";
