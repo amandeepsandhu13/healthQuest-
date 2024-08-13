@@ -62,3 +62,29 @@
 .p-text-light {
   color: #6c757d; /* Light text color for the button (adjust as needed) */
 }
+
+/* Ensure the container takes full width and height */
+.container {
+  max-width: 1200px; /* or any preferred width */
+  margin: 0 auto; /* Center the container */
+  padding: 0 15px; /* Add some padding if needed */
+}
+
+/* Center align header content */
+.header-container {
+  text-align: center; /* Center the text inside the header */
+}
+
+/* Additional styles to ensure full width and proper alignment */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-flex-start {
+  justify-content: flex-start;
+}
+
+.min-100-vh {
+  min-height: 100vh;
+}
