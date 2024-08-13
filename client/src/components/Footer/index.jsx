@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
+import './Footer.css'; // Import a custom CSS file for additional styling
 
 const Footer = () => {
   const location = useLocation();
@@ -14,21 +15,17 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-100 mt-auto bg-secondary p-4">
-      <div className="container">
-        <Panel 
-          className="p-3"
-        >
-          <p className="text-center">
-            Made with ❤️ by the following web devs:
-          </p>
-          <div className="d-flex justify-content-center gap-3">
+    <footer className="footer">
+      <div className="footer-container">
+        <Panel className="footer-panel">
+          <p className="footer-text">Made with ❤️ by the following web devs:</p>
+          <div className="footer-buttons">
             {developers.map((dev, index) => (
               <Button
                 key={index}
                 label={dev.name}
                 icon="pi pi-github"
-                className="p-button-link p-text-light"
+                className="footer-button"
                 onClick={() => window.open(dev.github, '_blank')}
               />
             ))}

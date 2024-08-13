@@ -1,27 +1,26 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
-      gender
-      exerciseLogs {
-        _id
-        category
-        categorySpecificData {
-          yoga {
-            instructor
-            level
-          }
-         
+    query user($username: String!) {
+        user(username: $username) {
+            _id
+            username
+            email
+            gender
+            exerciseLogs {
+                _id
+                category
+                categorySpecificData {
+                    yoga {
+                        instructor
+                        level
+                    }
+                }
+                duration
+                date
+            }
         }
-        duration
-        date
-      }
     }
-  }
 `;
 export const GET_EXERCISE_CATEGORIES = gql`
     query getExerciseCategories {
@@ -33,54 +32,84 @@ export const GET_EXERCISE_CATEGORIES = gql`
 `;
 
 export const GET_EXERCISE_LOGS = gql`
-query getExerciseLogs($userId: ID!) {
-  exerciseLogs(userId: $userId) {
-    _id
-    categoryId 
-    duration
-    date
-  }
-}
+    query getExerciseLogs($userId: ID!) {
+        exerciseLogs(userId: $userId) {
+            _id
+            categoryId
+            duration
+            date
+        }
+    }
 `;
 
+// get each exercise
+export const GET_EACH_EXERCISE = gql`
+    query getEachExercise($id: ID!) {
+        getEachExercise(_id: $id) {
+            _id
+            category
+            categorySpecificData {
+                yoga {
+                    instructor
+                    level
+                }
+                stretching {
+                    equipment
+                    focus
+                }
+                weightlifting {
+                    sets
+                    reps
+                    weight
+                }
+                cardio {
+                    distance
+                    intensity
+                }
+            }
+            duration
+            date
+            userId
+        }
+    }
+`;
 
 export const QUERY_ME = gql`
-  query {
-    me {
-      _id
-      username
-      email
-      gender
-      goal
-      age
-       height
-       weight
-       exerciseLogs {
-        _id
-        category
-        categorySpecificData {
-          yoga {
-            instructor
-            level
-          }
-          stretching {
-            equipment
-            focus
-          }
-          weightlifting {
-            sets
-            reps
+    query {
+        me {
+            _id
+            username
+            email
+            gender
+            goal
+            age
+            height
             weight
-          }
-          cardio {
-            distance
-            intensity
-          }
-
+            exerciseLogs {
+                _id
+                category
+                categorySpecificData {
+                    yoga {
+                        instructor
+                        level
+                    }
+                    stretching {
+                        equipment
+                        focus
+                    }
+                    weightlifting {
+                        sets
+                        reps
+                        weight
+                    }
+                    cardio {
+                        distance
+                        intensity
+                    }
+                }
+                duration
+                date
+            }
         }
-        duration
-        date
-      }
     }
-  }
 `;

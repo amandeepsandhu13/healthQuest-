@@ -1,56 +1,58 @@
+import { Menubar } from "primereact/menubar";
+import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
-
 import Auth from "../../utils/auth";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css"; 
+import "primeicons/primeicons.css"; 
+import "./Header.css"; 
 
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const start = (
+    <Link to="/">
+      <img
+        src="/src/assets/images/logo-no-background.png"
+        alt="Site Logo"
+        className="logo"
+      />
+    </Link>
+  );
+
+  const end = Auth.loggedIn() ? (
+    <div className="nav-buttons">
+      <Link className="p-button p-component p-button-info m-2" to="/me">
+        {Auth.getProfile().authenticatedPerson.username}'s Profile
+      </Link>
+      <Link className="p-button p-component p-button-primary m-2" to="/log-exercise">
+        Log Workout
+      </Link>
+      <Button label="Logout" className="p-button-secondary m-2" onClick={logout} />
+    </div>
+  ) : (
+    <div className="nav-buttons">
+      <Link className="p-button p-component p-button-light m-2" to="/about">
+        About
+      </Link>
+      <Link className="p-button p-component p-button-primary m-2" to="/log-exercise">
+      Log Workout
+      </Link>
+      <Link className="p-button p-component p-button-light m-2" to="/login">
+        Login
+      </Link>
+      <Link className="p-button p-component p-button-info m-2" to="/signup">
+        Signup
+      </Link>
+    </div>
+  );
+
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <div>
-          <Link to="/">
-            <img
-              src="/src/assets/images/logo-no-background.png"
-              alt="Site Logo"
-              style={{ height: "100px" }}
-            />
-          </Link>
-        </div>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
-                {/* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username  */}
-                {Auth.getProfile().authenticatedPerson.username}'s profile
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-light m-2" to="/about">
-                About
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/profile">
-                Profile
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/workouts">
-                Workouts
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-info m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
+    <header>
+      <Menubar start={start} end={end} className="custom-menubar" />
     </header>
   );
 };
