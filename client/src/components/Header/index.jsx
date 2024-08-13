@@ -2,10 +2,10 @@ import { Menubar } from "primereact/menubar";
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
+import "./Header.css"; 
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css"; 
 import "primeicons/primeicons.css"; 
-import "./Header.css"; 
 
 const Header = () => {
   const logout = (event) => {

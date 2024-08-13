@@ -4,15 +4,16 @@
 .banner-home {
     background: url('./assets/images/equipment.jpg') no-repeat center center;
     background: url('./assets/images/equipment.jpg') no-repeat center center;
-    background-size: contain; /* Cover the entire banner area */
-    height: 400px; /* Adjust height based on design requirements */
+    background-size: cover; /* Cover the entire banner area */
+    height: 50vh;
     display: flex;
     align-items: center;
     color: white;
     position: relative;
-    background-attachment: fixed;
+    background-attachment:scroll;
     justify-content: flex-start;
     text-align: left;
+    margin-top: 25px;
   }
   
   .banner-home::before {

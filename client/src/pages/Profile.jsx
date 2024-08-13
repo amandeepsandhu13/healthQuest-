@@ -71,7 +71,7 @@ const Profile = () => {
     return (
         <div className="profile-container p-3">
             <div className="flex justify-content-between mb-3">
-                <h3>Hi, {user.username}</h3>
+                <h3>Hi, {user.username}! </h3>
             </div>
 
             <div className="profile-content">

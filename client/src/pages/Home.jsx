@@ -57,7 +57,7 @@ const Home = () => {
       <section className="mission">
         <div className="grid-container">
           <div className="grid-item">
-            <h2>Personalized wellness Tracking</h2>
+            <h2>Personalized Wellness Tracking</h2>
             <p>
               We’re your partner through your well-being journey, delivering
               daily advice to fuel your movement, meals, and mind. Our support,
