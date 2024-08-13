@@ -2,16 +2,7 @@
 
 ## Overview
 
-**HealthQuest** is a comprehensive health and wellness platform that empowers users to achieve their fitness goals through personalized activity tracking, tailored wellness challenges, and actionable health advice. With a sleek and mobile-friendly interface, HealthQuest allows users to log workouts, monitor progress, and engage with a supportive community, all while ensuring the security and privacy of their personal health data.
-
-## Features
-
-- **Activity Logging:** Effortlessly record workouts, including type, duration, and intensity, and review past sessions to advance toward personal fitness goals.
-- **Tailored Wellness Challenges:** Participate in personalized wellness challenges that adapt to your activity level and progress.
-- **Personalized Health Advice:** Receive actionable health tips based on your logged activities and challenge performance.
-- **Community Support:** Engage with a community of users through support groups and share your journey.
-- **Mobile-Friendly Design:** Access HealthQuest seamlessly on any device with a responsive and intuitive UI.
-- **Secure Data Management:** Your health data is securely stored and protected, giving you peace of mind.
+**HealthQuest** is a comprehensive health and wellness platform that empowers users to achieve their fitness goals through personalized activity tracking. With a sleek and mobile-friendly interface, HealthQuest allows users to log workouts, and monitor progress while ensuring the security and privacy of their personal health data.
 
 ## Technologies Used
 
@@ -37,7 +28,7 @@ Ensure you have the following installed on your system:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/NatalieClinton/HealthQuest.git
+   git clone https://github.com/amandeepsandhu13/healthQuest-.git
    cd HealthQuest
    ```
 
@@ -66,13 +57,6 @@ Ensure you have the following installed on your system:
 
    Open your browser and navigate to `http://localhost:3000`.
 
-## Usage
-
-1. **Sign up or log in to your HealthQuest account.**
-2. **Log your workouts, including details like type, duration, and intensity.**
-3. **Join personalized wellness challenges and track your progress.**
-4. **Receive tailored health advice based on your logged activities.**
-5. **Engage with the community through support groups and share your journey.**
 
 ## Future Development
 
@@ -97,7 +81,11 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For questions or support, please contact us at [support@healthquest.com](mailto:support@healthquest.com).
+For questions or support, please contact us at   
+- [Natalie Clinton](https://github.com/NatalieClinton)
+- [Amandeep Sandhu](https://github.com/amandeepsandhu13)
+- [Aneri Patel](https://github.com/aneripatel2002)
+- [Udit Sachdeva](https://github.com/usachdeva)
 
 ## Acknowledgments
 
