@@ -44,47 +44,45 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EXERCISE_LOG = gql`
- mutation addExerciseLog(
-    $category: String!
-    $categorySpecificData: CategorySpecificDataInput!
-    $duration: Int!
-    $date: String!
-  ) {
-    addExerciseLog(
-      category: $category
-      categorySpecificData: $categorySpecificData
-      duration: $duration
-      date: $date
-    ){
-      _id
-      category
-      categorySpecificData {
-        yoga {
-          instructor
-          level
+    mutation addExerciseLog(
+        $category: String!
+        $categorySpecificData: CategorySpecificDataInput!
+        $duration: Int!
+        $date: String!
+    ) {
+        addExerciseLog(
+            category: $category
+            categorySpecificData: $categorySpecificData
+            duration: $duration
+            date: $date
+        ) {
+            _id
+            category
+            categorySpecificData {
+                yoga {
+                    instructor
+                    level
+                }
+                stretching {
+                    equipment
+                    focus
+                }
+                weightlifting {
+                    sets
+                    reps
+                    weight
+                }
+                cardio {
+                    distance
+                    intensity
+                }
+            }
+            duration
+            date
+            userId
         }
-        stretching {
-          equipment
-          focus
-        }
-        weightlifting {
-          sets
-          reps
-          weight
-        }
-        cardio {
-          distance
-          intensity
-        }
-      }
-      duration
-      date
-      userId
     }
-  }
 `;
-
-
 
 export const ADD_EXERCISE_CATEGORY = gql`
     mutation addExerciseCategory($name: String!) {
@@ -95,12 +93,20 @@ export const ADD_EXERCISE_CATEGORY = gql`
     }
 `;
 
-
 export const GET_EXERCISE_CATEGORIES = gql`
     query getExerciseCategories {
         exerciseCategories {
             _id
             name
+        }
+    }
+`;
+
+export const DELETE_EXERCISE_LOG = gql`
+    mutation deleteExerciseLog($id: ID!) {
+        deleteExerciseLog(_id: $id) {
+            success
+            message
         }
     }
 `;
