@@ -55,3 +55,20 @@
 .p-dropdown .p-dropdown-item:hover {
     background-color: #e0e0e0 ;
 }
+
+.details-container {
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.detail-header {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.detail-value {
+    color: #555;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}

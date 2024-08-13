@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_EACH_EXERCISE } from "../utils/queries";
 import { DELETE_EXERCISE_LOG } from "../utils/mutations";
+import { Button } from "primereact/button";
+import '../log-exercise.css'; // Include your updated styles
 
 const ActivityDetails = () => {
     const { id } = useParams();
@@ -41,69 +43,50 @@ const ActivityDetails = () => {
     };
 
     return (
-        <div>
-            <h2>Activity Details</h2>
-            <p>Category: {log.category}</p>
-            <p>Duration: {log.duration} minutes</p>
-            <p>Date: {new Date(parseInt(log.date)).toLocaleString()}</p>
+        <div className="log-exercise-container p-4">
+            <h2 className="p-text-center p-mb-4">Activity Details</h2>
+            <div className="details-container">
+                <p className="detail-header">Category:</p> <p className="detail-value">{log.category}</p>
+                <p className="detail-header">Duration:</p> <p className="detail-value">{log.duration} minutes</p>
+                <p className="detail-header">Date:</p> <p className="detail-value">{new Date(parseInt(log.date)).toLocaleString()}</p>
 
-            {log.categorySpecificData && (
-                <div>
-                    {log.category === "yoga" && (
-                        <>
-                            <p>
-                                Instructor:{" "}
-                                {log.categorySpecificData.yoga.instructor}
-                            </p>
-                            <p>Level: {log.categorySpecificData.yoga.level}</p>
-                        </>
-                    )}
-                    {log.category === "stretching" && (
-                        <>
-                            <p>
-                                Equipment:{" "}
-                                {log.categorySpecificData.stretching.equipment}
-                            </p>
-                            <p>
-                                Focus:{" "}
-                                {log.categorySpecificData.stretching.focus}
-                            </p>
-                        </>
-                    )}
-                    {log.category === "weightlifting" && (
-                        <>
-                            <p>
-                                Sets:{" "}
-                                {log.categorySpecificData.weightlifting.sets}
-                            </p>
-                            <p>
-                                Reps:{" "}
-                                {log.categorySpecificData.weightlifting.reps}
-                            </p>
-                            <p>
-                                Weight:{" "}
-                                {log.categorySpecificData.weightlifting.weight}{" "}
-                                kg
-                            </p>
-                        </>
-                    )}
-                    {log.category === "cardio" && (
-                        <>
-                            <p>
-                                Distance:{" "}
-                                {log.categorySpecificData.cardio.distance} km
-                            </p>
-                            <p>
-                                Intensity:{" "}
-                                {log.categorySpecificData.cardio.intensity}
-                            </p>
-                        </>
-                    )}
-                </div>
-            )}
-            <button id="delete" onClick={handleDelete}>
-                Delete
-            </button>
+                {log.categorySpecificData && (
+                    <div>
+                        {log.category === "yoga" && (
+                            <>
+                                <p className="detail-header">Instructor:</p> <p className="detail-value">{log.categorySpecificData.yoga.instructor}</p>
+                                <p className="detail-header">Level:</p> <p className="detail-value">{log.categorySpecificData.yoga.level}</p>
+                            </>
+                        )}
+                        {log.category === "stretching" && (
+                            <>
+                                <p className="detail-header">Equipment:</p> <p className="detail-value">{log.categorySpecificData.stretching.equipment}</p>
+                                <p className="detail-header">Focus:</p> <p className="detail-value">{log.categorySpecificData.stretching.focus}</p>
+                            </>
+                        )}
+                        {log.category === "weightlifting" && (
+                            <>
+                                <p className="detail-header">Sets:</p> <p className="detail-value">{log.categorySpecificData.weightlifting.sets}</p>
+                                <p className="detail-header">Reps:</p> <p className="detail-value">{log.categorySpecificData.weightlifting.reps}</p>
+                                <p className="detail-header">Weight:</p> <p className="detail-value">{log.categorySpecificData.weightlifting.weight} kg</p>
+                            </>
+                        )}
+                        {log.category === "cardio" && (
+                            <>
+                                <p className="detail-header">Distance:</p> <p className="detail-value">{log.categorySpecificData.cardio.distance} km</p>
+                                <p className="detail-header">Intensity:</p> <p className="detail-value">{log.categorySpecificData.cardio.intensity}</p>
+                            </>
+                        )}
+                    </div>
+                )}
+            </div>
+            <Button
+                id="delete"
+                label="Delete"
+                icon="pi pi-trash"
+                className="p-button-danger p-mt-4"
+                onClick={handleDelete}
+            />
         </div>
     );
 };
