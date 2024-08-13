@@ -79,6 +79,9 @@ We welcome contributions to enhance HealthQuest! Please follow these steps:
 
 This project is licensed under the MIT License.
 
+## Deployed Site
+The application is deployed on Render and can be accessed at [HealthQuest](https://healthquest-hyv8.onrender.com)
+
 ## Contact
 
 For questions or support, please contact us at   

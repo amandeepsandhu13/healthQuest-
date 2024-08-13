@@ -4,7 +4,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_EACH_EXERCISE } from "../utils/queries";
 import { DELETE_EXERCISE_LOG } from "../utils/mutations";
 import { Button } from "primereact/button";
-import '../log-exercise.css'; // Include your updated styles
+import '../log-exercise.css';
 
 const ActivityDetails = () => {
     const { id } = useParams();
