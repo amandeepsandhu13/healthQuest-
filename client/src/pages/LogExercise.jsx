@@ -8,6 +8,10 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css'; 
+import '../log-exercise.css'; 
 
 const LogExercise = () => {
     const [category, setCategory] = useState("yoga");
@@ -19,12 +23,11 @@ const LogExercise = () => {
 
     const [addExerciseLog] = useMutation(ADD_EXERCISE_LOG);
     const toast = React.useRef(null);
+    const navigate = useNavigate();
 
     const handleCategoryChange = (e) => {
         setCategory(e.value);
     };
-
-    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -63,7 +66,7 @@ const LogExercise = () => {
             setCategory("yoga");
             setCategorySpecificData({});
             setDuration("");
-            // setDate('');
+            setDate(""); // Ensure date is cleared as well
             // Set success message
             toast.current.show({
                 severity: "success",
@@ -88,12 +91,12 @@ const LogExercise = () => {
     }
 
     return (
-        <div className="p-fluid">
+        <div className="log-exercise-container p-3">
             <Toast ref={toast} />
 
             <h2 className="p-text-center p-mb-4">Log Exercise</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="log-exercise-form">
                 <div className="p-field">
                     <label htmlFor="category">Category:</label>
                     <Dropdown
