@@ -14,6 +14,7 @@ const LogExercise = () => {
   const [categorySpecificData, setCategorySpecificData] = useState({});
   const [duration, setDuration] = useState('');
   const [date, setDate] = useState('');
+  const [level, setLevel] = useState(''); // State for the "level" dropdown
   const [successMessage, setSuccessMessage] = useState('');
   const [error, setError] = useState(null);
 
@@ -107,13 +108,15 @@ const LogExercise = () => {
             <Dropdown
               id="level"
               name="level"
+              value={level} // Bind state to dropdown
+
               options={[
                 { label: 'Select option', value: '' },
                 { label: 'Beginner', value: 'Beginner' },
                 { label: 'Intermediate', value: 'Intermediate' },
                 { label: 'Advanced', value: 'Advanced' }
               ]}
-              onChange={handleInputChange}
+              onChange={(e) => setLevel(e.value)} // Directly update state
               placeholder="Select a level"
             />
           </div>
@@ -147,12 +150,14 @@ const LogExercise = () => {
             <Dropdown
               id="intensity"
               name="intensity"
+              value={level} // Bind state to dropdown
+
               options={[
                 { label: 'Low', value: 'Low' },
                 { label: 'Medium', value: 'Medium' },
                 { label: 'High', value: 'High' }
               ]}
-              onChange={handleInputChange}
+              onChange={(e) => setLevel(e.value)} // Directly update state
               placeholder="Select an intensity"
             />
           </div>
