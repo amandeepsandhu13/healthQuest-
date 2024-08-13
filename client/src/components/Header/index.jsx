@@ -35,11 +35,15 @@ const Header = () => {
               <Link className="btn btn-lg btn-light m-2" to="/about">
                 About
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/profile">
+              {/* <Link className="btn btn-lg btn-light m-2" to="/profile">
                 Profile
               </Link>
               <Link className="btn btn-lg btn-light m-2" to="/workouts">
                 Workouts
+              </Link> */}
+              <Link to="/log-exercise" className="btn btn-primary m-2">Log Today's Activity</Link>
+            <Link className="btn btn-primary m-2" to="/me">
+                View Activities Log
               </Link>
               <Link className="btn btn-lg btn-light m-2" to="/login">
                 Login
