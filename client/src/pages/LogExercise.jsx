@@ -14,12 +14,13 @@ import 'primeicons/primeicons.css';
 import '../log-exercise.css'; 
 
 const LogExercise = () => {
-    const [category, setCategory] = useState("yoga");
-    const [categorySpecificData, setCategorySpecificData] = useState({});
-    const [duration, setDuration] = useState("");
-    const [date, setDate] = useState("");
-    const [successMessage, setSuccessMessage] = useState("");
-    const [error, setError] = useState(null);
+  const [category, setCategory] = useState('yoga');
+  const [categorySpecificData, setCategorySpecificData] = useState({});
+  const [duration, setDuration] = useState('');
+  const [date, setDate] = useState('');
+  const [level, setLevel] = useState(''); // State for the "level" dropdown
+  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState(null);
 
     const [addExerciseLog] = useMutation(ADD_EXERCISE_LOG);
     const toast = React.useRef(null);
@@ -113,32 +114,27 @@ const LogExercise = () => {
                     />
                 </div>
 
-                {category === "yoga" && (
-                    <div className="p-field">
-                        <label htmlFor="instructor">Instructor:</label>
-                        <InputText
-                            id="instructor"
-                            name="instructor"
-                            onChange={handleInputChange}
-                        />
-                        <label htmlFor="level">Level:</label>
-                        <Dropdown
-                            id="level"
-                            name="level"
-                            options={[
-                                { label: "Select option", value: "" },
-                                { label: "Beginner", value: "Beginner" },
-                                {
-                                    label: "Intermediate",
-                                    value: "Intermediate",
-                                },
-                                { label: "Advanced", value: "Advanced" },
-                            ]}
-                            onChange={handleInputChange}
-                            placeholder="Select a level"
-                        />
-                    </div>
-                )}
+        {category === 'yoga' && (
+          <div className="p-field">
+            <label htmlFor="instructor">Instructor:</label>
+            <InputText id="instructor" name="instructor" onChange={handleInputChange} />
+            <label htmlFor="level">Level:</label>
+            <Dropdown
+              id="level"
+              name="level"
+              value={level} // Bind state to dropdown
+
+              options={[
+                { label: 'Select option', value: '' },
+                { label: 'Beginner', value: 'Beginner' },
+                { label: 'Intermediate', value: 'Intermediate' },
+                { label: 'Advanced', value: 'Advanced' }
+              ]}
+              onChange={(e) => setLevel(e.value)} // Directly update state
+              placeholder="Select a level"
+            />
+          </div>
+        )}
 
                 {category === "stretching" && (
                     <div className="p-field">
@@ -192,35 +188,26 @@ const LogExercise = () => {
                     </div>
                 )}
 
-                {category === "cardio" && (
-                    <div className="p-field">
-                        <label htmlFor="distance">Distance (km):</label>
-                        <InputNumber
-                            id="distance"
-                            name="distance"
-                            onValueChange={(e) =>
-                                handleInputChange({
-                                    target: {
-                                        name: "distance",
-                                        value: e.value,
-                                    },
-                                })
-                            }
-                        />
-                        <label htmlFor="intensity">Intensity:</label>
-                        <Dropdown
-                            id="intensity"
-                            name="intensity"
-                            options={[
-                                { label: "Low", value: "Low" },
-                                { label: "Medium", value: "Medium" },
-                                { label: "High", value: "High" },
-                            ]}
-                            onChange={handleInputChange}
-                            placeholder="Select an intensity"
-                        />
-                    </div>
-                )}
+        {category === 'cardio' && (
+          <div className="p-field">
+            <label htmlFor="distance">Distance (km):</label>
+            <InputNumber id="distance" name="distance" onValueChange={(e) => handleInputChange({ target: { name: 'distance', value: e.value } })} />
+            <label htmlFor="intensity">Intensity:</label>
+            <Dropdown
+              id="intensity"
+              name="intensity"
+              value={level} // Bind state to dropdown
+
+              options={[
+                { label: 'Low', value: 'Low' },
+                { label: 'Medium', value: 'Medium' },
+                { label: 'High', value: 'High' }
+              ]}
+              onChange={(e) => setLevel(e.value)} // Directly update state
+              placeholder="Select an intensity"
+            />
+          </div>
+        )}
 
                 <div className="p-field">
                     <label htmlFor="duration">Duration (minutes):</label>
