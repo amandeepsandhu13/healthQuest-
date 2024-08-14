@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
@@ -28,6 +28,8 @@ const aggregateActivities = (logs) => {
 const Profile = () => {
     // Extract the username parameter from the URL
     const { username: userParam } = useParams();
+    const navigate = useNavigate(); // Initialize useNavigate
+
 
     // Fetch user data based on whether a specific username is provided or not
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -88,8 +90,11 @@ const Profile = () => {
                         <p><strong>Height:</strong> {user.height}</p>
                         <p><strong>Weight:</strong> {user.weight}</p>
                         <p><strong>Goal:</strong> {user.goal}</p>
-                        <Button label="Update User Info" className="p-button-outlined" />
-                    </Card>
+                        <Button 
+                            label="Update User Info" 
+                            className="p-button-outlined" 
+                            onClick={() => navigate('/update-profile')} // Navigate to UpdateProfile page
+                        />                    </Card>
                 </div>
 
 {/* Exercise Log List */}

@@ -78,6 +78,8 @@ const typeDefs = `
     getExerciseLogs(userId: ID!): [ExerciseLog]
     me: User
     getEachExercise(_id: ID!): ExerciseLog 
+    getUserProfile(id: ID!): User
+
   }
 
   type Mutation {
@@ -88,6 +90,16 @@ const typeDefs = `
     addExerciseLog(category: String!, categorySpecificData: CategorySpecificDataInput!, duration: Int!, date: String!): ExerciseLog
 
     deleteExerciseLog(_id:ID!): DeleteResponse
+    updateUser(
+      id: ID!
+      username: String
+      email: String
+      gender: String
+      age: Int
+      height: Float
+      weight: Float
+      goal: String
+    ): User
   }
 
   input CategorySpecificDataInput {
@@ -117,6 +129,14 @@ const typeDefs = `
     distance: Float
     intensity: String
   }
+  
+  input UpdateUserInput {
+    gender: String
+    age: Int
+    height: Float
+    weight: Float
+    goal: String
+}
 `;
 
 module.exports = typeDefs;
