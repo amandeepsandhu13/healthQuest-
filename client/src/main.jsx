@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import UpdateProfile from "./pages/UpdateProfile.jsx";
 import Error from "./pages/Error";
 import LogExercise from "./pages/LogExercise"; // Import LogExercise component
 import ActivityDetails from "./pages/ActivityDetails.jsx";
@@ -50,11 +51,10 @@ const router = createBrowserRouter([
                 path: "/activity/:id",
                 element: <ActivityDetails />,
             },
-
-            // {
-            // path: '/add-exercise-category' ,
-            // element: <AddExerciseCategory />,
-            // },
+            {
+                path: "/update-profile" ,
+                element: <UpdateProfile />,
+             },
         ],
     },
 ]);

@@ -41,6 +41,12 @@ const resolvers = {
                 "categorySpecificData"
             );
         },
+        getUserProfile: async (parent, { id }, context) => {
+          if (context.user && context.user._id === id) {
+            return await User.findById(id);
+          }
+          throw new AuthenticationError('You are not authorized to view this profile.');
+        },
     },
 
     Mutation: {
@@ -158,6 +164,14 @@ const resolvers = {
                 console.error(error);
                 throw new Error("Failed to delete exercise log.");
             }
+        },
+        updateUser: async (parent, args, context) => {
+          if (context.user && context.user._id === args.id) {
+            return await User.findByIdAndUpdate(args.id, args, {
+              new: true,
+            });
+          }
+          throw new AuthenticationError('You are not authorized to update this profile.');
         },
     },
 };

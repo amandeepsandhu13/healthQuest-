@@ -110,3 +110,36 @@ export const DELETE_EXERCISE_LOG = gql`
         }
     }
 `;
+
+export const UPDATE_USER = gql`
+    mutation updateUser(
+        $id: ID!
+        $username: String!
+        $email: String!
+        $gender: String!
+        $age: Int!
+        $height: Float!
+        $weight: Float!
+        $goal: String!
+    ) {
+        updateUser(
+            id: $id
+            username: $username
+            email: $email
+            gender: $gender
+            age: $age
+            height: $height
+            weight: $weight
+            goal: $goal
+        ) {
+            _id
+            username
+            email
+            gender
+            age
+            height
+            weight
+            goal
+        }
+    }
+`;
