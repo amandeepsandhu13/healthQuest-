@@ -3,10 +3,8 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
-import { Link } from "react-router-dom";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import { Divider } from 'primereact/divider';
 import '../profile.css';
 
 // Helper function to capitalize the first letter of a string
