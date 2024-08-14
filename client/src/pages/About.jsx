@@ -16,7 +16,7 @@ const About = () => {
           <div className="grid-item">
             <div className="grid-item-content">
               <img
-                src="../src/assets/images/excercise.jpg"
+                src="/images/excercise.jpg"
                 alt="Our Origin Image"
               />
             </div>
@@ -76,7 +76,7 @@ const About = () => {
           <div className="grid-item">
             <div className="grid-item-content">
               <img
-                src="../src/assets/images/anywhere.jpg"
+                src="/images/anywhere.jpg"
                 alt="Mission Image 2"
               />
             </div>

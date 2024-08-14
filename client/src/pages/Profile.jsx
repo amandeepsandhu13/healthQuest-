@@ -78,7 +78,7 @@ const Profile = () => {
                     <Card title="User Information" className="mb-3">
                         <div className="profile-icon">
                             <img
-                                src="src/assets/images/profile-icon-9.png"
+                                src="/images/profile-icon-9.png"
                                 alt="Profile Icon"
                                 className="profile-image"
                             />

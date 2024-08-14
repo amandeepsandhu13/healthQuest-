@@ -16,7 +16,7 @@ const Header = () => {
   const start = (
     <Link to="/">
       <img
-        src="/src/assets/images/logo-no-background.png"
+        src="/images/logo-no-background.png"
         alt="Site Logo"
         className="logo"
       />

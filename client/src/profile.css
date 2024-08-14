@@ -20,6 +20,7 @@
     border-radius: 50%;
     object-fit: cover;
 }
+
 .exercise-logs {
     flex: 2;
 }
