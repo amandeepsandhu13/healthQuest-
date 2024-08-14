@@ -32,8 +32,10 @@ const Profile = () => {
 
 
     // Fetch user data based on whether a specific username is provided or not
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    const { loading, data, refetch } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
         variables: { username: userParam },
+        fetchPolicy: "network-only", // Ensures the data is always fetched from the network
+
     });
 
     // Extract user data from the query response
