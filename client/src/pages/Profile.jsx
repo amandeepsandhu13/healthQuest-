@@ -86,9 +86,9 @@ const Profile = () => {
                             />
                         </div>
                         <p><strong>Gender:</strong> {user.gender}</p>
-                        <p><strong>Age:</strong> {user.age}</p>
-                        <p><strong>Height:</strong> {user.height}</p>
-                        <p><strong>Weight:</strong> {user.weight}</p>
+                        <p><strong>Age:</strong> {user.age} years</p>
+                        <p><strong>Height:</strong> {user.height}cms</p>
+                        <p><strong>Weight:</strong> {user.weight}lbs</p>
                         <p><strong>Goal:</strong> {user.goal}</p>
                         <Button label="Update User Info" className="p-button-outlined" />
                     </Card>

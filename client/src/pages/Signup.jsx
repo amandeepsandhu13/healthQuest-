@@ -116,7 +116,7 @@ const Signup = () => {
                                 />
                                 <input
                                     className="form-input"
-                                    placeholder="Your weight in kgs"
+                                    placeholder="Your weight in lbs"
                                     name="weight"
                                     type="text"
                                     value={formState.weight}
