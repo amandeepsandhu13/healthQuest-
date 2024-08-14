@@ -3,8 +3,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { UPDATE_USER } from '../utils/mutations';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'primereact/button'; // Ensure this import is correct
-import { InputText } from 'primereact/inputtext'; // Ensure this import is correct
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
 import { Card } from 'primereact/card';
 import '../profile.css';
 
@@ -92,6 +92,7 @@ const UpdateProfile = () => {
                             value={formState.username}
                             onChange={handleChange}
                             disabled
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
@@ -103,6 +104,7 @@ const UpdateProfile = () => {
                             value={formState.email}
                             onChange={handleChange}
                             disabled
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
@@ -113,6 +115,7 @@ const UpdateProfile = () => {
                             name="gender"
                             value={formState.gender}
                             onChange={handleChange}
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
@@ -123,6 +126,7 @@ const UpdateProfile = () => {
                             name="age"
                             value={formState.age}
                             onChange={handleChange}
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
@@ -133,6 +137,7 @@ const UpdateProfile = () => {
                             name="height"
                             value={formState.height}
                             onChange={handleChange}
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
@@ -143,6 +148,7 @@ const UpdateProfile = () => {
                             name="weight"
                             value={formState.weight}
                             onChange={handleChange}
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
@@ -153,10 +159,13 @@ const UpdateProfile = () => {
                             name="goal"
                             value={formState.goal}
                             onChange={handleChange}
+                            className="p-inputtext-lg p-d-block p-mb-3"
                         />
                     </div>
 
-                    <Button type="submit" label="Update" className="p-button-outlined" />
+                    <br />
+                    
+                    <Button type="submit" label="Update" className="p-button-outlined p-mt-3" />
                 </form>
             </Card>
         </div>
