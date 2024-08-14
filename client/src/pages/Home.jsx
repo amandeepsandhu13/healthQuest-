@@ -11,22 +11,22 @@ const Home = () => {
     {
       name: "Sophia Anderson",
       role: "Founder",
-      imgSrc: "../src/assets/images/user2.jpeg",
+      imgSrc: "images/user2.jpeg",
     },
     {
       name: "Ethan Clark",
       role: "Functional Trainer",
-      imgSrc: "../src/assets/images/user1.jpg",
+      imgSrc: "/images/user1.jpg",
     },
     {
       name: "Olivia Johnson",
       role: "Pilates Trainer",
-      imgSrc: "../src/assets/images/user5.jpeg",
+      imgSrc: "/images/user5.jpeg",
     },
     {
       name: "Liam Martinez",
       role: "Heavyweight Trainer",
-      imgSrc: "../src/assets/images/user3.jpeg",
+      imgSrc: "/images/user3.jpeg",
     },
   ];
 
@@ -57,6 +57,8 @@ const Home = () => {
       <section className="mission">
         <div className="grid-container">
           <div className="grid-item">
+            <br />
+            <br />
             <h2>Personalized Wellness Tracking</h2>
             <p>
               We’re your partner through your well-being journey, delivering
@@ -69,7 +71,7 @@ const Home = () => {
             </p>
           </div>
           <div className="grid-item">
-            <img src="../src/assets/images/log.jpeg" alt="Mission Image 2" />
+            <img src="/images/log.jpeg" alt="Mission Image 2" />
           </div>
         </div>
       </section>

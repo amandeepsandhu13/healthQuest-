@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { Panel } from 'primereact/panel';
-import './footer.css'; // Import a custom CSS file for additional styling
+import './footer.css'; 
 
 const Footer = () => {
   const location = useLocation();
